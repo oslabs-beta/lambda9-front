@@ -12,3 +12,5 @@ export interface FuncState {
 export interface AppContextInterface {
   state: any;
 }
+
+declare module "aws-exports";

@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { createGlobalStyle } from 'styled-components';
-import { withAuthenticator } from 'aws-amplify-react';
-import 'antd/dist/antd.css';
+import React, { Component } from "react";
+import { createGlobalStyle } from "styled-components";
+import { withAuthenticator } from "aws-amplify-react";
+import "antd/dist/antd.css";
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import NavContainer from './components/NavContainer';
-import AppContainer from './components/AppContainer';
-import AllFunctionsContainer from './components/AllFunctions/AllFunctionsContainer';
-import MyFuncContainer from './components/MyFunctions/MyFuncContainer';
-import Bottom from './components/Bottom';
-import { AppContextInterface } from './@types/types';
+import NavContainer from "./components/NavContainer";
+import AppContainer from "./components/AppContainer";
+import AllFunctionsContainer from "./components/AllFunctions/AllFunctionsContainer";
+import MyFuncContainer from "./components/MyFunctions/MyFuncContainer";
+import Bottom from "./components/Bottom";
+import { AppContextInterface } from "./@types/types";
 // import Bottom from './components/Bottom';
 
 const GlobalStyle = createGlobalStyle`
@@ -33,22 +33,25 @@ const GlobalStyle = createGlobalStyle`
 
 const funcs = [
   {
-    functionName: 'hello',
-    lastModified: new Date('12/06/2009'),
+    functionName: "hello",
+    lastModified: new Date("12/06/2009"),
     invocation: 2,
-    error: 2
+    error: 2,
+    project: "We"
   },
   {
-    functionName: 'helloasync',
-    lastModified: new Date('12/06/2008'),
+    functionName: "helloasync",
+    lastModified: new Date("12/06/2008"),
     invocation: 3,
-    error: 3
+    error: 3,
+    project: "are"
   },
   {
-    functionName: 'helloworld',
-    lastModified: new Date('12/06/2001'),
+    functionName: "helloworld",
+    lastModified: new Date("12/06/2001"),
     invocation: 6,
-    error: 1
+    error: 1,
+    project: "Axolotle"
   }
 ];
 
@@ -57,8 +60,8 @@ export const MyContext = React.createContext<AppContextInterface | null>(null);
 class MyProvider extends Component {
   state = {
     user: {
-      username: 'Tang',
-      avatar: './src/logos/lamb.jpg'
+      username: "Tang",
+      avatar: "./src/logos/lamb.jpg"
     },
     functions: funcs
   };
@@ -78,9 +81,9 @@ const App: React.FunctionComponent<{}> = (props: any) => {
         <GlobalStyle />
         <NavContainer />
         <Switch>
-          <Route path="/" exact component={AppContainer} />
-          <Route path="/functions" exact component={AllFunctionsContainer} />
-          <Route path="/functions/:func" component={MyFuncContainer} />
+          <Route path='/' exact component={AppContainer} />
+          <Route path='/functions' exact component={AllFunctionsContainer} />
+          <Route path='/functions/:func' component={MyFuncContainer} />
         </Switch>
         <Bottom />
       </MyProvider>
@@ -89,3 +92,4 @@ const App: React.FunctionComponent<{}> = (props: any) => {
 };
 
 export default withAuthenticator(App);
+// export default App;
