@@ -1,7 +1,8 @@
 import React from 'react';
 // import Func from '../../@types/types';
-import { MyContext } from '../../App';
+import { MyContext } from '../App';
 import console = require('console');
+// import { Err } from './Err';
 
 import {
   BrowserRouter as Router,
@@ -12,14 +13,6 @@ import {
 import styled from 'styled-components';
 
 type TParams = { func: string };
-
-// const MyFuncContainer: React.FunctionComponent<{}> = () => {
-//   return (
-//     <MyContext.Consumer>
-//       {context => <div>{JSON.stringify(context.state)}</div>}
-//     </MyContext.Consumer>
-//   );
-// };
 
 const Info = styled.div`
   display: flex;
@@ -34,32 +27,32 @@ function MyFuncContainer({ match }: RouteComponentProps<TParams>) {
             <Info>
               <div>Name:</div>
               <div>
-                {JSON.stringify(
+                {
                   context.state.functions.filter(ele => {
                     return ele.functionName === match.params.func;
                   })[0].functionName
-                )}
+                }
               </div>
             </Info>
           </div>
           <Info>
             <div>Inovcation:</div>
             <div>
-              {JSON.stringify(
+              {
                 context.state.functions.filter(ele => {
                   return ele.functionName === match.params.func;
                 })[0].invocation
-              )}
+              }
             </div>
           </Info>
           <Info>
             <div>Error:</div>
             <div>
-              {JSON.stringify(
+              {
                 context.state.functions.filter(ele => {
                   return ele.functionName === match.params.func;
                 })[0].error
-              )}
+              }
             </div>
           </Info>
         </div>
@@ -69,5 +62,17 @@ function MyFuncContainer({ match }: RouteComponentProps<TParams>) {
     </MyContext.Consumer>
   );
 }
+
+// function MyFuncContainer({ match }: RouteComponentProps<TParams>) {
+//   let myfunction;
+//   <MyContext.Consumer>
+//     {context => ({
+//       myfunction = context.state.functions.filter(ele => {
+//         return ele.functionName === match.params.func;
+//       })[0]
+//     })}
+//   </MyContext.Consumer>;
+//   return <Err filtered={myfunction} />;
+// }
 
 export default MyFuncContainer;

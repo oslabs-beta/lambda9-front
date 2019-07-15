@@ -1,12 +1,12 @@
-import React from "react";
-import styled from "styled-components";
-import NavSearch from "./NavSearch";
-import { Link } from "react-router-dom";
+import React from 'react';
+import styled from 'styled-components';
+import NavSearch from './NavSearch';
+import { Link } from 'react-router-dom';
 
-import SignOutButton from "./SignOutButton";
-import { MyContext } from "../App";
+import SignOutButton from './SignOutButton';
+import { MyContext } from '../App';
 
-import { Popover, Dropdown } from "antd";
+import { Popover, Dropdown } from 'antd';
 
 const NavContainerStyled = styled.nav`
   font-size: 2rem;
@@ -35,17 +35,17 @@ const NavContainer: React.FunctionComponent<{}> = () => {
     <MyContext.Consumer>
       {context => (
         <NavContainerStyled>
-          <div className='logo'>🐑 Lambda 9</div>
+          <div className="logo">🐑 Lambda 9</div>
           <NavSearch />
-          <Link to='/'>
+          <Link to="/">
             <div>Dashboard</div>
           </Link>
-          <Link to='/functions'>
+          <Link to="/functions">
             <div>Functions</div>
           </Link>
           <Popover content={content}>
-            <div style={{display: "flex", cursor:"pointer"}}>
-              <img style={{ width: "50px" }} src={context.state.user.avatar} />
+            <div style={{ display: 'flex', cursor: 'pointer' }}>
+              <img style={{ width: '50px' }} src={context.state.user.avatar} />
               <div>{context.state.user.username}</div>
             </div>
           </Popover>

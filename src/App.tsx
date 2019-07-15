@@ -1,16 +1,17 @@
-import React, { Component } from "react";
-import { createGlobalStyle } from "styled-components";
-import { withAuthenticator } from "aws-amplify-react";
-import "antd/dist/antd.css";
+import React, { Component, useState } from 'react';
+import { createGlobalStyle } from 'styled-components';
+import { withAuthenticator } from 'aws-amplify-react';
+import 'antd/dist/antd.css';
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import NavContainer from "./components/NavContainer";
-import AppContainer from "./components/AppContainer";
-import AllFunctionsContainer from "./components/AllFunctions/AllFunctionsContainer";
-import MyFuncContainer from "./components/MyFunctions/MyFuncContainer";
-import Bottom from "./components/Bottom";
-import { AppContextInterface } from "./@types/types";
+import NavContainer from './components/NavContainer';
+import AppContainer from './components/AppContainer';
+import AllFunctionsContainer from './components/AllFunctions/AllFunctionsContainer';
+import MyFuncContainer from './components/MyFuncContainer';
+import Bottom from './components/Bottom';
+import { AppContextInterface } from './@types/types';
+import { UserData } from 'amazon-cognito-identity-js';
 // import Bottom from './components/Bottom';
 
 const GlobalStyle = createGlobalStyle`
@@ -33,35 +34,52 @@ const GlobalStyle = createGlobalStyle`
 
 const funcs = [
   {
-    functionName: "hello",
-    lastModified: new Date("12/06/2009"),
+    functionName: 'hello',
+    lastModified: new Date('12/06/2009'),
     invocation: 2,
     error: 2,
-    project: "We"
+    project: 'We'
   },
   {
-    functionName: "helloasync",
-    lastModified: new Date("12/06/2008"),
+    functionName: 'helloasync',
+    lastModified: new Date('12/06/2008'),
     invocation: 3,
     error: 3,
-    project: "are"
+    project: 'are'
   },
   {
-    functionName: "helloworld",
-    lastModified: new Date("12/06/2001"),
+    functionName: 'helloworld',
+    lastModified: new Date('12/06/2001'),
     invocation: 6,
     error: 1,
-    project: "Axolotle"
+    project: 'Axolotle'
   }
 ];
 
-export const MyContext = React.createContext<AppContextInterface | null>(null);
+interface Func {
+  functionName: string;
+  lastModified: Date;
+  invocation: number;
+  error: number;
+  project: string;
+}
+
+interface User {
+  username: string;
+  avatar: string;
+}
+
+interface FuncState {
+  user: User;
+  functions: Func[];
+}
+export const MyContext = React.createContext<any | null>(null);
 
 class MyProvider extends Component {
   state = {
     user: {
-      username: "Tang",
-      avatar: "./src/logos/lamb.jpg"
+      username: 'Tang',
+      avatar: './src/logos/lamb.jpg'
     },
     functions: funcs
   };
@@ -74,6 +92,21 @@ class MyProvider extends Component {
   }
 }
 
+// const MyProvider = (props: any) => {
+//   const [state, setState] = useState<FuncState>({
+//     user: {
+//       username: 'Tang',
+//       avatar: './src/logos/lamb.jpg'
+//     },
+//     functions: funcs
+//   });
+//   return (
+//     <MyContext.Provider value={[state, setState]}>
+//       {this.props.children}
+//     </MyContext.Provider>
+//   );
+// };
+
 const App: React.FunctionComponent<{}> = (props: any) => {
   return (
     <Router>
@@ -81,9 +114,9 @@ const App: React.FunctionComponent<{}> = (props: any) => {
         <GlobalStyle />
         <NavContainer />
         <Switch>
-          <Route path='/' exact component={AppContainer} />
-          <Route path='/functions' exact component={AllFunctionsContainer} />
-          <Route path='/functions/:func' component={MyFuncContainer} />
+          <Route path="/" exact component={AppContainer} />
+          <Route path="/functions" exact component={AllFunctionsContainer} />
+          <Route path="/functions/:func" component={MyFuncContainer} />
         </Switch>
         <Bottom />
       </MyProvider>
