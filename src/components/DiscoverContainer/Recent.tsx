@@ -8,13 +8,22 @@ const Recent: React.FunctionComponent<{}> = () => {
       {context => (
         <div>
           <h1>Most Recent</h1>
-          {context.state.functions
-            .sort((a: any, b: any) => {
-              return b.lastModified.getTime() - a.lastModified.getTime();
+          {context.state.data
+            .sort((a, b) => {
+              return (
+                new Date(b.lastModified).getTime() -
+                new Date(a.lastModified).getTime()
+              );
             })
-            .map((func: Func) => (
+            .slice(0, 5)
+            .map((func: any) => (
               <div>
-                <div>{func.functionName}</div>
+                <div>
+                  {func.functionName
+                    .split('-')
+                    .slice(0, -1)
+                    .join('-')}
+                </div>
                 <div>{JSON.stringify(func.lastModified)}</div>
               </div>
             ))}
