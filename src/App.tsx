@@ -12,7 +12,8 @@ import MyFuncContainer from './components/MyFuncContainer';
 import Bottom from './components/Bottom';
 import { AppContextInterface } from './@types/types';
 import { UserData } from 'amazon-cognito-identity-js';
-// import Bottom from './components/Bottom';
+
+import axios from 'axios';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -59,7 +60,7 @@ const funcs = [
 interface Func {
   functionName: string;
   lastModified: Date;
-  invocation: number;
+  invocations: number;
   error: number;
   project: string;
 }
@@ -72,17 +73,43 @@ interface User {
 interface FuncState {
   user: User;
   functions: Func[];
+  data: any;
 }
+
 export const MyContext = React.createContext<any | null>(null);
 
 class MyProvider extends Component {
   state = {
     user: {
-      username: 'Tang',
+      username: 'Bruce',
       avatar: './src/logos/lamb.jpg'
     },
-    functions: funcs
+    functions: funcs,
+    data: []
   };
+
+  getAllData() {
+    axios
+      .get('https://test.lambda9.cloud/backend-test/alldata')
+      .then(res => this.setState({ ...this.state, data: res.data }))
+      .catch(err => console.log(err));
+  }
+
+  getUserData() {
+    axios
+      .post(
+        'https://test.lambda9.cloud/backend-test/getUserFunctions',
+        this.state.user.username
+      )
+      .then(res => this.setState({ ...this.state, functions: res.data }))
+      .catch(err => console.log(err));
+  }
+
+  componentDidMount() {
+    this.getAllData();
+    // this.getUserData()
+  }
+
   render() {
     return (
       <MyContext.Provider value={{ state: this.state }}>
@@ -91,21 +118,6 @@ class MyProvider extends Component {
     );
   }
 }
-
-// const MyProvider = (props: any) => {
-//   const [state, setState] = useState<FuncState>({
-//     user: {
-//       username: 'Tang',
-//       avatar: './src/logos/lamb.jpg'
-//     },
-//     functions: funcs
-//   });
-//   return (
-//     <MyContext.Provider value={[state, setState]}>
-//       {this.props.children}
-//     </MyContext.Provider>
-//   );
-// };
 
 const App: React.FunctionComponent<{}> = (props: any) => {
   return (

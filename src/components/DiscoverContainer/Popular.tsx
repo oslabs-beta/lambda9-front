@@ -8,14 +8,21 @@ const Popular: React.FunctionComponent<{}> = () => {
       {context => (
         <div>
           <h1>Most Popular</h1>
-          {context.state.functions
+          {context.state.data
+            .map((ele: any) => ele)
             .sort((a, b) => {
-              return b.invocation - a.invocation;
+              return Number(b.invocations) - Number(a.invocations);
             })
-            .map((func: Func) => (
+            .slice(0, 5)
+            .map((func: any) => (
               <div>
-                <div>{func.functionName}</div>
-                <div>{func.invocation}</div>
+                <div>
+                  {func.functionName
+                    .split('-')
+                    .slice(0, -1)
+                    .join('-')}
+                </div>
+                <div>{func.invocations}</div>
               </div>
             ))}
         </div>
