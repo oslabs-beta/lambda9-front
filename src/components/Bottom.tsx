@@ -2,14 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 const BottomStyled = styled.div`
-  position: fixed;
-  bottom: 0;
   width: 100%;
+  height: 10vh;
   color: black;
   font-size: 1rem;
   padding: 0.5em;
   text-align: center;
-  border: 1px solid black;
+  border: 6px solid black;
 `;
 
 const Bottom: React.FunctionComponent<{}> = () => {

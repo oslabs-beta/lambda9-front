@@ -38,7 +38,6 @@ const PopularStyled = styled.div`
   flex: 1;
   border-radius: 10px;
   background-color: lightgray;
-  height: 50vh;
 `;
 
 export default Popular;

@@ -1,11 +1,13 @@
 import React from "react";
 import { MyContext } from "../../App";
+import { Link } from "react-router-dom";
 
-import { Table } from "antd";
+import { Table, Button } from "antd";
 import { ColumnProps } from "antd/lib/table";
 
 interface User {
   name: string;
+  detail: string;
   invocations: number;
   project: string;
   lastModified: string;
@@ -27,15 +29,22 @@ const columns: ColumnProps<User>[] = [
       }
       return 0;
     },
-    sortDirections: ["descend"]
+    sortDirections: ["descend", "ascend"]
   },
   {
+    key: "2",
+    title: "",
+    dataIndex: "detail"
+  },
+  {
+    key: "3",
     title: "Invocations",
     dataIndex: "invocations",
     sorter: (a, b) => a.invocations - b.invocations,
-    sortDirections: ["descend"]
+    sortDirections: ["descend", "ascend"]
   },
   {
+    key: "4",
     title: "Project",
     dataIndex: "project",
     sorter: (a, b) => {
@@ -47,9 +56,10 @@ const columns: ColumnProps<User>[] = [
       }
       return 0;
     },
-    sortDirections: ["descend"]
+    sortDirections: ["descend", "ascend"]
   },
   {
+    key: "5",
     title: "Last Modified",
     dataIndex: "lastModified",
     sorter: (a, b) => {
@@ -61,7 +71,7 @@ const columns: ColumnProps<User>[] = [
       }
       return 0;
     },
-    sortDirections: ["descend"]
+    sortDirections: ["descend", "ascend"]
   }
 ];
 
@@ -72,11 +82,21 @@ const AllFunctionsContainer: React.FunctionComponent<{}> = () => {
   return (
     <MyContext.Consumer>
       {context => (
-        <div style={{ padding: "1em" }}>
+        <div
+          style={{
+            border: "10px solid green",
+            padding: "1em",
+            height: "100vh"
+          }}>
           {context.state.functions.map(
             func => (
               (stat = new Object()),
               (stat.name = func.functionName),
+              (stat.detail = (
+                <Link to={`/functions/${func.functionName}`}>
+                  <Button type="primary">Detail</Button>
+                </Link>
+              )),
               (stat.invocations = func.invocation),
               (stat.project = func.project),
               (stat.lastModified = JSON.stringify(func.lastModified)),

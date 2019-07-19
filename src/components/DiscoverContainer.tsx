@@ -1,7 +1,7 @@
-import React from 'react';
-import Popular from './DiscoverContainer/Popular';
-import Recent from './DiscoverContainer/Recent';
-import styled from 'styled-components';
+import React from "react";
+import Popular from "./DiscoverContainer/Popular";
+import Recent from "./DiscoverContainer/Recent";
+import styled from "styled-components";
 
 const DiscoverStyled = styled.div`
   display: flex;
@@ -10,10 +10,10 @@ const DiscoverStyled = styled.div`
 `;
 const DiscoverContainer: React.FunctionComponent<{}> = props => {
   return (
-      <DiscoverStyled>
-        <Popular />
-        <Recent />
-      </DiscoverStyled>
+    <DiscoverStyled>
+      <Popular />
+      <Recent />
+    </DiscoverStyled>
   );
 };
 

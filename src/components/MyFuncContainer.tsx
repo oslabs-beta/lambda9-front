@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 // import Func from '../../@types/types';
-import { MyContext } from '../App';
-import console = require('console');
+import { MyContext } from "../App";
+import console = require("console");
 // import { Err } from './Err';
 
 import {
@@ -9,8 +9,8 @@ import {
   Route,
   Link,
   RouteComponentProps
-} from 'react-router-dom';
-import styled from 'styled-components';
+} from "react-router-dom";
+import styled from "styled-components";
 
 type TParams = { func: string };
 
@@ -23,19 +23,17 @@ function MyFuncContainer({ match }: RouteComponentProps<TParams>) {
   return (
     <MyContext.Consumer>
       {context => (
-        <div>
-          <div>
-            <Info>
-              <div>Name:</div>
-              <div>
-                {
-                  context.state.functions.filter(ele => {
-                    return ele.functionName === match.params.func;
-                  })[0].functionName
-                }
-              </div>
-            </Info>
-          </div>
+        <div style={{height: "100vh"}}>
+          <Info>
+            <div>Name:</div>
+            <div>
+              {
+                context.state.functions.filter(ele => {
+                  return ele.functionName === match.params.func;
+                })[0].functionName
+              }
+            </div>
+          </Info>
           <Info>
             <div>Inovcation:</div>
             <div>

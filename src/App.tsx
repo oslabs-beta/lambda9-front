@@ -2,6 +2,10 @@ import React, { Component, useState } from "react";
 import { createGlobalStyle } from "styled-components";
 import { withAuthenticator } from "aws-amplify-react";
 import "antd/dist/antd.css";
+import { API, graphqlOperation } from 'aws-amplify';
+import {
+  ListFunctions,
+} from './graphql/graphql';
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -10,30 +14,14 @@ import AllFunctionsContainer from "./components/AllFunctions/AllFunctionsContain
 import MyFuncContainer from "./components/MyFuncContainer";
 import Bottom from "./components/Bottom";
 import NavContainer from "./components/NavContainer";
+import Profile from "./components/UserPopover/Profile";
+import Setting from "./components/UserPopover/Setting";
 
 import { AppContextInterface } from "./@types/types";
 import { UserData } from "amazon-cognito-identity-js";
 
 import axios from "axios";
 import styled from "styled-components";
-
-const GlobalStyle = createGlobalStyle`
-  html {
-    box-sizing: border-box;
-  }
-  *, *:before, *:after {
-    box-sizing: inherit;
-  }
-
-  body {
-    margin: 0;
-    font-family: helvetica, Arial, sans-serif;
-  }
-
-  h1, h2, h3, h4, h5, ul, li {
-    margin: 0;
-  }
-`;
 
 const funcs = [
   {
@@ -90,26 +78,33 @@ class MyProvider extends Component {
     data: []
   };
 
-  getAllData() {
-    axios
-      .get("https://test.lambda9.cloud/backend-test/alldata")
-      .then(res => this.setState({ ...this.state, data: res.data }))
-      .catch(err => console.log(err));
-  }
+  // getAllData() {
+  //   axios
+  //     .get("https://test.lambda9.cloud/backend-test/alldata")
+  //     .then(res => this.setState({ ...this.state, data: res.data }))
+  //     .catch(err => console.log(err));
+  // }
 
-  getUserData() {
-    axios
-      .post(
-        "https://test.lambda9.cloud/backend-test/getUserFunctions",
-        this.state.user.username
-      )
-      .then(res => this.setState({ ...this.state, functions: res.data }))
-      .catch(err => console.log(err));
-  }
+  // getUserData() {
+  //   axios
+  //     .post(
+  //       "https://test.lambda9.cloud/backend-test/getUserFunctions",
+  //       this.state.user.username
+  //     )
+  //     .then(res => this.setState({ ...this.state, functions: res.data }))
+  //     .catch(err => console.log(err));
+  // }
 
   componentDidMount() {
-    this.getAllData();
+    // this.getAllData();
     // this.getUserData()
+    API.graphql(graphqlOperation(ListFunctions))
+      .then(response => {
+        const data = response.data.listFunctions.items;
+        console.log(data);
+        this.setState({functions:data})
+        })
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -125,18 +120,46 @@ const App: React.FunctionComponent<{}> = (props: any) => {
   return (
     <Router>
       <MyProvider>
-          <GlobalStyle />
+        <GlobalStyle />
+        <AppStyled>
           <NavContainer />
           <Switch>
             <Route path='/' exact component={AppContainer} />
             <Route path='/functions' exact component={AllFunctionsContainer} />
             <Route path='/functions/:func' component={MyFuncContainer} />
+            <Route path='/profile' exact component={Profile} />
+            <Route path='/setting' exact component={Setting} />
           </Switch>
           <Bottom />
+        </AppStyled>
       </MyProvider>
     </Router>
   );
 };
+
+const GlobalStyle = createGlobalStyle`
+  html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+  body {
+    margin: 0;
+    font-family: helvetica, Arial, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, ul, li {
+    margin: 0;
+  }
+`;
+
+const AppStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+`;
 
 export default withAuthenticator(App);
 // export default App;
