@@ -10,13 +10,10 @@ const DiscoverStyled = styled.div`
 `;
 const DiscoverContainer: React.FunctionComponent<{}> = props => {
   return (
-    <div>
-      <h1>Discover</h1>
       <DiscoverStyled>
         <Popular />
         <Recent />
       </DiscoverStyled>
-    </div>
   );
 };
 

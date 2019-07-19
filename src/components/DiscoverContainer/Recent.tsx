@@ -1,13 +1,15 @@
-import React from 'react';
-import { MyContext } from '../../App';
-import { Func } from '../../@types/types';
+import React from "react";
+import { MyContext } from "../../App";
+import styled from "styled-components";
 
 const Recent: React.FunctionComponent<{}> = () => {
   return (
     <MyContext.Consumer>
       {context => (
-        <div>
-          <h1>Most Recent</h1>
+        <RecentStyled>
+          <div style={{ border: "1px solid black", display: "table-cell" }}>
+            <h1>Most Recent</h1>
+          </div>
           {context.state.data
             .sort((a, b) => {
               return (
@@ -20,17 +22,25 @@ const Recent: React.FunctionComponent<{}> = () => {
               <div>
                 <div>
                   {func.functionName
-                    .split('-')
+                    .split("-")
                     .slice(0, -1)
-                    .join('-')}
+                    .join("-")}
                 </div>
                 <div>{JSON.stringify(func.lastModified)}</div>
               </div>
             ))}
-        </div>
+        </RecentStyled>
       )}
     </MyContext.Consumer>
   );
 };
+
+const RecentStyled = styled.div`
+  border: 1px dodgerblue solid;
+  padding: 10px;
+  flex: 1;
+  border-radius: 10px;
+  background-color: lightgray;
+`;
 
 export default Recent;

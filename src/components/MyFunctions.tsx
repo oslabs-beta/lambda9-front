@@ -2,6 +2,9 @@ import React from 'react';
 import { MyContext } from '../App';
 import { Func } from '../@types/types';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+
 
 const MyFunction: React.FunctionComponent<{}> = () => {
   return (

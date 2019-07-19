@@ -16,6 +16,7 @@ type TParams = { func: string };
 
 const Info = styled.div`
   display: flex;
+  border: 1px solid black;
 `;
 
 function MyFuncContainer({ match }: RouteComponentProps<TParams>) {

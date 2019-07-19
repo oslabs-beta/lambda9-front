@@ -1,19 +1,21 @@
-import React, { Component, useState } from 'react';
-import { createGlobalStyle } from 'styled-components';
-import { withAuthenticator } from 'aws-amplify-react';
-import 'antd/dist/antd.css';
+import React, { Component, useState } from "react";
+import { createGlobalStyle } from "styled-components";
+import { withAuthenticator } from "aws-amplify-react";
+import "antd/dist/antd.css";
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import NavContainer from './components/NavContainer';
-import AppContainer from './components/AppContainer';
-import AllFunctionsContainer from './components/AllFunctions/AllFunctionsContainer';
-import MyFuncContainer from './components/MyFuncContainer';
-import Bottom from './components/Bottom';
-import { AppContextInterface } from './@types/types';
-import { UserData } from 'amazon-cognito-identity-js';
+import AppContainer from "./components/AppContainer";
+import AllFunctionsContainer from "./components/AllFunctions/AllFunctionsContainer";
+import MyFuncContainer from "./components/MyFuncContainer";
+import Bottom from "./components/Bottom";
+import NavContainer from "./components/NavContainer";
 
-import axios from 'axios';
+import { AppContextInterface } from "./@types/types";
+import { UserData } from "amazon-cognito-identity-js";
+
+import axios from "axios";
+import styled from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -35,25 +37,25 @@ const GlobalStyle = createGlobalStyle`
 
 const funcs = [
   {
-    functionName: 'hello',
-    lastModified: new Date('12/06/2009'),
+    functionName: "hello",
+    lastModified: new Date("12/06/2009"),
     invocation: 2,
     error: 2,
-    project: 'We'
+    project: "We"
   },
   {
-    functionName: 'helloasync',
-    lastModified: new Date('12/06/2008'),
+    functionName: "helloasync",
+    lastModified: new Date("12/06/2008"),
     invocation: 3,
     error: 3,
-    project: 'are'
+    project: "are"
   },
   {
-    functionName: 'helloworld',
-    lastModified: new Date('12/06/2001'),
+    functionName: "helloworld",
+    lastModified: new Date("12/06/2001"),
     invocation: 6,
     error: 1,
-    project: 'Axolotle'
+    project: "Axolotle"
   }
 ];
 
@@ -81,8 +83,8 @@ export const MyContext = React.createContext<any | null>(null);
 class MyProvider extends Component {
   state = {
     user: {
-      username: 'Bruce',
-      avatar: './src/logos/lamb.jpg'
+      username: "Bruce",
+      avatar: "./src/logos/lamb.jpg"
     },
     functions: funcs,
     data: []
@@ -90,7 +92,7 @@ class MyProvider extends Component {
 
   getAllData() {
     axios
-      .get('https://test.lambda9.cloud/backend-test/alldata')
+      .get("https://test.lambda9.cloud/backend-test/alldata")
       .then(res => this.setState({ ...this.state, data: res.data }))
       .catch(err => console.log(err));
   }
@@ -98,7 +100,7 @@ class MyProvider extends Component {
   getUserData() {
     axios
       .post(
-        'https://test.lambda9.cloud/backend-test/getUserFunctions',
+        "https://test.lambda9.cloud/backend-test/getUserFunctions",
         this.state.user.username
       )
       .then(res => this.setState({ ...this.state, functions: res.data }))
@@ -123,14 +125,14 @@ const App: React.FunctionComponent<{}> = (props: any) => {
   return (
     <Router>
       <MyProvider>
-        <GlobalStyle />
-        <NavContainer />
-        <Switch>
-          <Route path="/" exact component={AppContainer} />
-          <Route path="/functions" exact component={AllFunctionsContainer} />
-          <Route path="/functions/:func" component={MyFuncContainer} />
-        </Switch>
-        <Bottom />
+          <GlobalStyle />
+          <NavContainer />
+          <Switch>
+            <Route path='/' exact component={AppContainer} />
+            <Route path='/functions' exact component={AllFunctionsContainer} />
+            <Route path='/functions/:func' component={MyFuncContainer} />
+          </Switch>
+          <Bottom />
       </MyProvider>
     </Router>
   );

@@ -1,13 +1,13 @@
-import React from 'react';
-import { MyContext } from '../../App';
-import { Func } from '../../@types/types';
+import React from "react";
+import { MyContext } from "../../App";
+import styled from "styled-components";
 
 const Popular: React.FunctionComponent<{}> = () => {
   return (
     <MyContext.Consumer>
       {context => (
-        <div>
-          <h1>Most Popular</h1>
+        <PopularStyled>
+          <h1 style={{ border: "1px solid black", display: "table-cell" }}>Most Popular</h1>
           {context.state.data
             .map((ele: any) => ele)
             .sort((a, b) => {
@@ -18,17 +18,27 @@ const Popular: React.FunctionComponent<{}> = () => {
               <div>
                 <div>
                   {func.functionName
-                    .split('-')
+                    .split("-")
                     .slice(0, -1)
-                    .join('-')}
+                    .join("-")}
                 </div>
                 <div>{func.invocations}</div>
               </div>
             ))}
-        </div>
+        </PopularStyled>
       )}
     </MyContext.Consumer>
   );
 };
+
+const PopularStyled = styled.div`
+  border: 1px dodgerblue solid;
+  padding: 10px;
+  margin-right: 1em;
+  flex: 1;
+  border-radius: 10px;
+  background-color: lightgray;
+  height: 50vh;
+`;
 
 export default Popular;

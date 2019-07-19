@@ -6,7 +6,7 @@ const Overview: React.FunctionComponent<{}> = () => {
   return (
     <MyContext.Consumer>
       {context => (
-        <div>
+        <div style={{flex:1}}>
           <h1>Overview</h1>
           <div>
             Total Invocations:
