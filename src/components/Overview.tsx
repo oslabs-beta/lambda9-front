@@ -11,14 +11,14 @@ const Overview: React.FunctionComponent<{}> = () => {
           <div>
             Total Invocations:
             {context.state.functions.reduce((total: number, func: Func) => {
-              total += func.invocation;
+              total += func.numInvocations;
               return total;
             }, 0)}
           </div>
           <div>
             Total Errors:
             {context.state.functions.reduce((total: number, func: Func) => {
-              total += func.error;
+              total += func.numErrors;
               return total;
             }, 0)}
           </div>

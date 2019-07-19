@@ -7,22 +7,19 @@ const Popular: React.FunctionComponent<{}> = () => {
     <MyContext.Consumer>
       {context => (
         <PopularStyled>
-          <h1 style={{ border: "1px solid black", display: "table-cell" }}>Most Popular</h1>
-          {context.state.data
+          <h1 style={{ border: "1px solid black", display: "table-cell" }}>
+            Most Popular
+          </h1>
+          {context.state.functions
             .map((ele: any) => ele)
             .sort((a, b) => {
-              return Number(b.invocations) - Number(a.invocations);
+              return Number(b.numInvocations) - Number(a.numInvocations);
             })
             .slice(0, 5)
             .map((func: any) => (
               <div>
-                <div>
-                  {func.functionName
-                    .split("-")
-                    .slice(0, -1)
-                    .join("-")}
-                </div>
-                <div>{func.invocations}</div>
+                <div>Function: {func.name}</div>
+                <div>Invocations: {func.numInvocations}</div>
               </div>
             ))}
         </PopularStyled>

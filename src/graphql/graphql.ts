@@ -15,6 +15,7 @@ export const ListFunctions = `
           }
           numErrors
           numInvocations
+          lastModified
         }
       }
   }

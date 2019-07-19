@@ -8,7 +8,7 @@ import { ColumnProps } from "antd/lib/table";
 interface User {
   name: string;
   detail: string;
-  invocations: number;
+  numInvocations: number;
   project: string;
   lastModified: string;
 }
@@ -39,8 +39,8 @@ const columns: ColumnProps<User>[] = [
   {
     key: "3",
     title: "Invocations",
-    dataIndex: "invocations",
-    sorter: (a, b) => a.invocations - b.invocations,
+    dataIndex: "numInvocations", // This column should be consistent with other variable;
+    sorter: (a, b) => a.numInvocations - b.numInvocations,
     sortDirections: ["descend", "ascend"]
   },
   {
@@ -91,13 +91,13 @@ const AllFunctionsContainer: React.FunctionComponent<{}> = () => {
           {context.state.functions.map(
             func => (
               (stat = new Object()),
-              (stat.name = func.functionName),
+              (stat.name = func.name),
               (stat.detail = (
-                <Link to={`/functions/${func.functionName}`}>
-                  <Button type="primary">Detail</Button>
+                <Link to={`/functions/${func.name}`}>
+                  <Button type='primary'>Detail</Button>
                 </Link>
               )),
-              (stat.invocations = func.invocation),
+              (stat.numInvocations = func.numInvocations),
               (stat.project = func.project),
               (stat.lastModified = JSON.stringify(func.lastModified)),
               data.push(stat),

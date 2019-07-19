@@ -1,8 +1,8 @@
 export interface Func {
-  functionName: string;
-  lastModified: Date;
-  invocation: number;
-  error: number;
+  name: string;
+  lastModified: string;
+  numInvocations: number;
+  numErrors: number;
 }
 
 export interface FuncState {
