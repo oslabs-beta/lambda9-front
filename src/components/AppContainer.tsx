@@ -8,6 +8,7 @@ const AppContainer: React.FunctionComponent<{}> = props => {
   return (
     <AppContainerStyled>
       <LeftContainerStyled>
+        <h2>My Functions</h2>
         <MyFunctions />
       </LeftContainerStyled>
 
@@ -32,15 +33,19 @@ const AppContainerStyled = styled.div`
 
 const LeftContainerStyled = styled.div`
   display: flex;
-  border: 1px solid black;
+  flex-direction: column;
+  border: 6px solid #e056fd;
   padding: 1em;
   flex: 0.3;
+  height: 100%;
+  overflow: scroll;
 `;
 
 const RightContainerStyled = styled.div`
   display: flex;
   border: 3px gray solid;
   flex-direction: column;
+  height: 100%;
   flex: 1;
 `;
 

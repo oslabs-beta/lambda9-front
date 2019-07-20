@@ -40,7 +40,7 @@ const columns: ColumnProps<User>[] = [
       }
       return 0;
     },
-    sortDirections: ["descend", "ascend"]
+    sortDirections: ['descend', 'ascend']
   },
   {
     key: "3",
@@ -52,7 +52,7 @@ const columns: ColumnProps<User>[] = [
     title: "Invocations",
     dataIndex: "numInvocations", // This column should be consistent with other variable;
     sorter: (a, b) => a.numInvocations - b.numInvocations,
-    sortDirections: ["descend", "ascend"]
+    sortDirections: ['descend', 'ascend']
   },
   {
     key: "5",
@@ -74,7 +74,7 @@ const columns: ColumnProps<User>[] = [
       }
       return 0;
     },
-    sortDirections: ["descend", "ascend"]
+    sortDirections: ['descend', 'ascend']
   },
   {
     key: "7",
@@ -89,7 +89,7 @@ const columns: ColumnProps<User>[] = [
       }
       return 0;
     },
-    sortDirections: ["descend", "ascend"]
+    sortDirections: ['descend', 'ascend']
   }
 ];
 
@@ -130,6 +130,7 @@ const AllFunctionsContainerStyled = styled.div`
   border: 10px solid green;
   padding: 1em;
   height: 100vh;
+  overflow: scroll;
 `;
 
 export default AllFunctionsContainer;
