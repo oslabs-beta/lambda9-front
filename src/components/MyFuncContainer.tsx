@@ -6,10 +6,10 @@ import styled from "styled-components";
 type TParams = { func: string };
 
 function MyFuncContainer({ match }: RouteComponentProps<TParams>) {
-  const value = useContext(MyContext);
-  const filtered = value.state.functions.filter(ele => {
+  const filtered = useContext(MyContext).state.functions.filter(ele => {
     return ele.name === match.params.func;
   })[0];
+
   return (
     <div style={{ flex: "1" }}>
       <Info>{filtered.name}</Info>

@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import NavSearch from "./NavSearch";
 import { Link } from "react-router-dom";
-
 import SignOutButton from "./SignOutButton";
 import { MyContext } from "../App";
-
 import { Popover } from "antd";
 
 const content = (
@@ -21,29 +19,23 @@ const content = (
 );
 
 const NavContainer: React.FunctionComponent<{}> = () => {
+  const context = useContext(MyContext).state.user;
   return (
-    <MyContext.Consumer>
-      {context => (
-        <NavContainerStyled>
-          <Link to='/'>
-            <div className='logo'>🐑 Lambda9</div>
-          </Link>
-          <NavSearch />
-          <Link to='/functions'>
-            <div>Functions</div>
-          </Link>
-          <Popover content={content}>
-            <div style={{ display: "flex", cursor: "pointer" }}>
-              <img
-                style={{ width: "50px", height: "50px" }}
-                src={context.state.user.avatar}
-              />
-              <div>{context.state.user.username}</div>
-            </div>
-          </Popover>
-        </NavContainerStyled>
-      )}
-    </MyContext.Consumer>
+    <NavContainerStyled>
+      <Link to='/'>
+        <div className='logo'>🐑 Lambda9</div>
+      </Link>
+      <NavSearch/>
+      <Link to='/functions'>
+        <div>Functions</div>
+      </Link>
+      <Popover content={content}>
+        <UserStyled>
+          <img style={{ width: "50px", height: "50px" }} src={context.avatar} />
+          <div>{context.username}</div>
+        </UserStyled>
+      </Popover>
+    </NavContainerStyled>
   );
 };
 
@@ -56,6 +48,11 @@ const NavContainerStyled = styled.nav`
   display: flex;
   justify-content: space-around;
   border: 6px solid blue;
+`;
+
+const UserStyled = styled.div`
+  display: flex;
+  cursor: pointer;
 `;
 
 export default NavContainer;
