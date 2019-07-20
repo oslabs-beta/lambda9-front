@@ -1,23 +1,23 @@
-import React from "react";
-import { MyContext } from "../../App";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { MyContext } from '../../App';
+import { Link } from 'react-router-dom';
 
-import { Table, Button } from "antd";
-import { ColumnProps } from "antd/lib/table";
+import { Table, Button } from 'antd';
+import { ColumnProps } from 'antd/lib/table';
 
 interface User {
   name: string;
   detail: string;
   numInvocations: number;
-  project: string;
+  projectName: string;
   lastModified: string;
 }
 
 const columns: ColumnProps<User>[] = [
   {
-    key: "1",
-    title: "Name",
-    dataIndex: "name",
+    key: '1',
+    title: 'Name',
+    dataIndex: 'name',
     // specify the condition of filtering result
     // here is that finding the name started with `value`
     sorter: (a, b) => {
@@ -29,39 +29,39 @@ const columns: ColumnProps<User>[] = [
       }
       return 0;
     },
-    sortDirections: ["descend", "ascend"]
+    sortDirections: ['descend', 'ascend']
   },
   {
-    key: "2",
-    title: "",
-    dataIndex: "detail"
+    key: '2',
+    title: '',
+    dataIndex: 'detail'
   },
   {
-    key: "3",
-    title: "Invocations",
-    dataIndex: "numInvocations", // This column should be consistent with other variable;
+    key: '3',
+    title: 'Invocations',
+    dataIndex: 'numInvocations', // This column should be consistent with other variable;
     sorter: (a, b) => a.numInvocations - b.numInvocations,
-    sortDirections: ["descend", "ascend"]
+    sortDirections: ['descend', 'ascend']
   },
   {
-    key: "4",
-    title: "Project",
-    dataIndex: "project",
+    key: '4',
+    title: 'Project',
+    dataIndex: 'projectName',
     sorter: (a, b) => {
-      if (a.project < b.project) {
+      if (a.projectName < b.projectName) {
         return -1;
       }
-      if (a.project > b.project) {
+      if (a.projectName > b.projectName) {
         return 1;
       }
       return 0;
     },
-    sortDirections: ["descend", "ascend"]
+    sortDirections: ['descend', 'ascend']
   },
   {
-    key: "5",
-    title: "Last Modified",
-    dataIndex: "lastModified",
+    key: '5',
+    title: 'Last Modified',
+    dataIndex: 'lastModified',
     sorter: (a, b) => {
       if (a.lastModified < b.lastModified) {
         return -1;
@@ -71,7 +71,7 @@ const columns: ColumnProps<User>[] = [
       }
       return 0;
     },
-    sortDirections: ["descend", "ascend"]
+    sortDirections: ['descend', 'ascend']
   }
 ];
 
@@ -84,24 +84,25 @@ const AllFunctionsContainer: React.FunctionComponent<{}> = () => {
       {context => (
         <div
           style={{
-            border: "10px solid green",
-            padding: "1em",
-            height: "100vh"
-          }}>
+            border: '10px solid green',
+            padding: '1em',
+            height: '100vh'
+          }}
+        >
           {context.state.functions.map(
             func => (
               (stat = new Object()),
               (stat.name = func.name),
               (stat.detail = (
                 <Link to={`/functions/${func.name}`}>
-                  <Button type='primary'>Detail</Button>
+                  <Button type="primary">Detail</Button>
                 </Link>
               )),
               (stat.numInvocations = func.numInvocations),
-              (stat.project = func.project),
+              (stat.projectName = func.projectName),
               (stat.lastModified = JSON.stringify(func.lastModified)),
               data.push(stat),
-              console.log(data)
+              console.log('date', data)
             )
           )}
           <Table columns={columns} dataSource={data} />
