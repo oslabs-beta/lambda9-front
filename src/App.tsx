@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 import { withAuthenticator } from "aws-amplify-react";
 import "antd/dist/antd.css";
 import { API, graphqlOperation } from "aws-amplify";
-import { ListFunctions } from "./graphql/graphql";
+import { ListFunctions, SubscribeToNewFunctions } from "./graphql/graphql";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AppContainer from "./components/AppContainer";
 import AllFunctionsContainer from "./components/AllFunctions/AllFunctionsContainer";
@@ -33,6 +33,18 @@ class MyProvider extends Component {
         this.setState({ functions: data });
       })
       .catch(err => console.log(err));
+  }
+
+  componentDidUpdate(){
+    API.graphql(graphqlOperation(SubscribeToNewFunctions))
+    .subscribe({
+      next: response => {
+        console.log("response: ", response);
+        const func = response.value.data.onCreateFunction;
+        console.log("func: ", func);
+        this.setState({ functions: [...this.state.functions, func] });
+      }
+    })
   }
 
   render() {
