@@ -8,10 +8,10 @@ import { Statistic, Icon } from 'antd';
 type TParams = { func: string };
 
 function MyFuncContainer({ match }: RouteComponentProps<TParams>) {
-  const value = useContext(MyContext);
-  const filtered = value.state.functions.filter(ele => {
+  const filtered = useContext(MyContext).state.functions.filter(ele => {
     return ele.name === match.params.func;
   })[0];
+
   return (
     <StyledContainer>
       <Info style={{ fontSize: '20px', color: 'black', fontStyle: 'bold' }}>
@@ -62,6 +62,7 @@ const Invocation = styled.div`
   margin: 5px;
 `;
 const StyledContainer = styled.div`
+  height: 100vh;
   padding: 10px;
 `;
 

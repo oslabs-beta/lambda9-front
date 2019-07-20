@@ -1,12 +1,10 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import { createGlobalStyle } from "styled-components";
 import { withAuthenticator } from "aws-amplify-react";
 import "antd/dist/antd.css";
 import { API, graphqlOperation } from "aws-amplify";
 import { ListFunctions } from "./graphql/graphql";
-
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
 import AppContainer from "./components/AppContainer";
 import AllFunctionsContainer from "./components/AllFunctions/AllFunctionsContainer";
 import MyFuncContainer from "./components/MyFuncContainer";

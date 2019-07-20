@@ -1,30 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import { MyContext } from "../../App";
 import styled from "styled-components";
 
 const Popular: React.FunctionComponent<{}> = () => {
+  const context = useContext(MyContext).state.functions;
   return (
-    <MyContext.Consumer>
-      {context => (
-        <PopularStyled>
-          <h1 style={{ border: "1px solid black", display: "table-cell" }}>
-            Most Popular
-          </h1>
-          {context.state.functions
-            .map((ele: any) => ele)
-            .sort((a, b) => {
-              return Number(b.numInvocations) - Number(a.numInvocations);
-            })
-            .slice(0, 5)
-            .map((func: any) => (
-              <div>
-                <div>Function: {func.name}</div>
-                <div>Invocations: {func.numInvocations}</div>
-              </div>
-            ))}
-        </PopularStyled>
-      )}
-    </MyContext.Consumer>
+    <PopularStyled>
+      <h2>Most Popular</h2>
+      {context
+        .map((ele: any) => ele)
+        .sort((a, b) => {
+          return Number(b.numInvocations) - Number(a.numInvocations);
+        })
+        .slice(0, 5)
+        .map((func: any) => (
+          <div>
+            <div>Function: {func.name}</div>
+            <div>Invocations: {func.numInvocations}</div>
+          </div>
+        ))}
+    </PopularStyled>
   );
 };
 
