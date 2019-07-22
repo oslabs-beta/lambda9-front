@@ -32,10 +32,10 @@ const columns: ColumnProps<User>[] = [
     // specify the condition of filtering result
     // here is that finding the name started with `value`
     sorter: (a, b) => {
-      if (a.name < b.name) {
+      if (a.name.toLowerCase() < b.name.toLowerCase()) {
         return -1;
       }
-      if (a.name > b.name) {
+      if (a.name.toLowerCase() > b.name.toLowerCase()) {
         return 1;
       }
       return 0;
@@ -66,10 +66,10 @@ const columns: ColumnProps<User>[] = [
     title: "Project",
     dataIndex: "projectName",
     sorter: (a, b) => {
-      if (a.projectName < b.projectName) {
+      if (a.projectName.toLowerCase() < b.projectName.toLowerCase()) {
         return -1;
       }
-      if (a.projectName > b.projectName) {
+      if (a.projectName.toLowerCase() > b.projectName.toLowerCase()) {
         return 1;
       }
       return 0;

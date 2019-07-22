@@ -52,13 +52,17 @@ const RightContainerStyled = styled.div`
 const OverviewStyled = styled.div`
   border: 3px solid purple;
   padding: 1em;
-  flex: 1;
+  height: 100%;
+  flex: 4;
+  overflow: scroll;
 `;
 
 const DiscoverStyled = styled.div`
   border: 3px solid yellow;
   padding: 1em;
-  flex: 1;
+  height: 100%;
+  flex: 6;
+  overflow: scroll;
 `;
 
 export default AppContainer;
