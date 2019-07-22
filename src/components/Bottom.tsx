@@ -4,21 +4,18 @@ import styled from "styled-components";
 const Bottom: React.FunctionComponent<{}> = () => {
   return (
     <BottomStyled>
-      <div>
-        Lambda 9, 2019<p>Terms of Service Privacy Policy</p>
-      </div>
+        <div>Lambda 9, 2019<div>Terms of Service Privacy Policy</div></div>
     </BottomStyled>
   );
 };
 
 const BottomStyled = styled.div`
   width: 100%;
-  height: 10vh;
+  flex: 0.1;
   color: black;
   font-size: 1rem;
-  padding: 0.5em;
   text-align: center;
-  border: 6px solid black;
+  border: 1px solid black;
 `;
 
 export default Bottom;

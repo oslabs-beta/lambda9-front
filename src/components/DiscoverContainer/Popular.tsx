@@ -6,7 +6,7 @@ const Popular: React.FunctionComponent<{}> = () => {
   const context = useContext(MyContext).state.functions;
   return (
     <PopularStyled>
-      <h2>Most Popular</h2>
+      <h2>Most Popular Functions</h2>
       {context
         .map((ele: any) => ele)
         .sort((a, b) => {
@@ -14,10 +14,10 @@ const Popular: React.FunctionComponent<{}> = () => {
         })
         .slice(0, 5)
         .map((func: any) => (
-          <div>
-            <div>Function: {func.name}</div>
-            <div>Invocations: {func.numInvocations}</div>
-          </div>
+          <NameStyled>
+            <div>⚛︎ {func.name}</div>
+            <div>⚡️Invoked: {func.numInvocations} times</div>
+          </NameStyled>
         ))}
     </PopularStyled>
   );
@@ -25,11 +25,20 @@ const Popular: React.FunctionComponent<{}> = () => {
 
 const PopularStyled = styled.div`
   border: 1px dodgerblue solid;
+  height: 100%;
   padding: 10px;
   margin-right: 1em;
   flex: 1;
   border-radius: 10px;
   background-color: lightgray;
+  overflow: scroll;
+`;
+
+const NameStyled = styled.div`
+  width: 100%;
+  padding: 0.5em;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export default Popular;

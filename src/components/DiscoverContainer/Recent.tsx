@@ -7,7 +7,7 @@ const Recent: React.FunctionComponent<{}> = () => {
   const context = useContext(MyContext).state.functions;
   return (
     <RecentStyled>
-      <h2>Most Recent</h2>
+      <h2>Most Recent Function</h2>
       {context
         .sort((a, b) => {
           return (
@@ -17,13 +17,10 @@ const Recent: React.FunctionComponent<{}> = () => {
         })
         .slice(0, 5)
         .map((func: any) => (
-          <div>
-            <div>Function: {func.name}</div>
-            <div>
-              Last modified: {distanceInWordsToNow(new Date(func.lastModified))}{" "}
-              ago
-            </div>
-          </div>
+          <NameStyled>
+            <div>⚛︎ {func.name}</div>
+            <div>⏱ {distanceInWordsToNow(new Date(func.lastModified))} ago</div>
+          </NameStyled>
         ))}
     </RecentStyled>
   );
@@ -31,10 +28,19 @@ const Recent: React.FunctionComponent<{}> = () => {
 
 const RecentStyled = styled.div`
   border: 1px dodgerblue solid;
+  height: 100%;
   padding: 10px;
   flex: 1;
   border-radius: 10px;
   background-color: lightgray;
+  overflow: scroll;
+`;
+
+const NameStyled = styled.div`
+  width: 100%;
+  padding: 0.5em;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export default Recent;
