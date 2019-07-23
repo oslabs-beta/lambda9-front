@@ -1,3 +1,14 @@
+export const GetUser = `
+  query GetUser(
+      $id: String!
+    ) {
+      getUser(id: $id) {
+        username
+        profileImageUrl
+      }
+    }
+`
+
 export const ListFunctions = `
   query ListFunctions {
       listFunctions {
