@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { createGlobalStyle } from "styled-components";
 import { withAuthenticator } from "aws-amplify-react";
 import "antd/dist/antd.css";
-import { API, graphqlOperation } from "aws-amplify";
-import { ListFunctions, SubscribeToNewFunctions } from "./graphql/graphql";
+import { API, graphqlOperation, Auth } from "aws-amplify";
+import { GetUser, ListFunctions, SubscribeToNewFunctions } from "./graphql/graphql";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AppContainer from "./components/AppContainer";
 import AllFunctionsContainer from "./components/AllFunctions/AllFunctionsContainer";
@@ -18,19 +18,30 @@ export const MyContext = React.createContext<any | null>(null);
 
 class MyProvider extends Component {
   state = {
-    user: {
-      username: "Bruce",
-      avatar: "./src/logos/lamb.jpg"
-    },
+    user: {},
     functions: []
   };
 
-  componentDidMount() {
+  async componentDidMount() {
+    const user = await Auth.currentAuthenticatedUser({
+        bypassCache: false 
+    });
+
+    const userData = await API.graphql(graphqlOperation(GetUser, { id: user.attributes.sub }))
+      .then(response => {
+        const data = response.data.getUser;
+        return data;
+
+      })
+      .catch(err => console.log(err));
+
+    console.log(userData);
+    
     API.graphql(graphqlOperation(ListFunctions))
       .then(response => {
         const data = response.data.listFunctions.items;
         console.log(data);
-        this.setState({ functions: data });
+        this.setState({ functions: data, user: { username: userData.username, avatar: userData.profileImageUrl }  });
       })
       .catch(err => console.log(err));
   }
