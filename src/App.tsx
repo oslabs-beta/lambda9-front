@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useReducer, useEffect } from "react";
 import { createGlobalStyle } from "styled-components";
 import { withAuthenticator } from "aws-amplify-react";
 import "antd/dist/antd.css";
@@ -20,10 +20,21 @@ class MyProvider extends Component {
   state = {
     user: {
       username: "Bruce",
-      avatar: "./src/logos/lamb.jpg"
+      imageUrl: "./src/logos/download.jpeg"
     },
     functions: []
   };
+
+  // loadingReducer(state, action) {
+  //   switch(action.type){
+  //     case 'UPLOAD':
+  //       return state = true;
+  //   }
+  // }
+
+  // dispatch({type: 'UPLOAD'})
+
+  // const [loading, dispatch] = useReducer(loadingReducuer, false)
 
   componentDidMount() {
     API.graphql(graphqlOperation(ListFunctions))
@@ -34,19 +45,36 @@ class MyProvider extends Component {
       })
       .catch(err => console.log(err));
   }
+  // useEffect(()=> {
+  //   API.graphql(graphqlOperation(ListFunctions))
+  //       .then(response => {
+  //         const data = response.data.listFunctions.items;
+  //         console.log(data);
+  //         this.setState({ functions: data });
+  //       })
+  //       .catch(err => console.log(err));
+  // },[])
 
-  componentDidUpdate(){
-    API.graphql(graphqlOperation(SubscribeToNewFunctions))
-    .subscribe({
+  // useEffect(()=>{
+  //   API.graphql(graphqlOperation(SubscribeToNewFunctions)).subscribe({
+  //     next: response => {
+  //       console.log("response: ", response);
+  //       const func = response.value.data.onCreateFunction;
+  //       console.log("func: ", func);
+  //       this.setState({ functions: [...this.state.functions, func] });
+  //     }
+  //   });
+  // })
+  componentDidUpdate() {
+    API.graphql(graphqlOperation(SubscribeToNewFunctions)).subscribe({
       next: response => {
         console.log("response: ", response);
         const func = response.value.data.onCreateFunction;
         console.log("func: ", func);
         this.setState({ functions: [...this.state.functions, func] });
       }
-    })
+    });
   }
-
   render() {
     return (
       <MyContext.Provider value={{ state: this.state }}>

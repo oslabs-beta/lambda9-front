@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
+import Avatar from './Avatar'
+
 
 const Profile: React.FunctionComponent<{}> = () => {
-  return <ProfileStyled>profile</ProfileStyled>;
+ 
+  return (
+    <ProfileStyled>
+      <Avatar/>
+      <div>User Avatar</div>
+      <div>User ID</div>
+      <div>User Email</div>
+      <div>User PhoneNumber</div>
+    </ProfileStyled>
+  );
 };
 
 const ProfileStyled = styled.div`

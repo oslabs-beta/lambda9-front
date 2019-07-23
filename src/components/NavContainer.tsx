@@ -31,7 +31,7 @@ const NavContainer: React.FunctionComponent<{}> = () => {
       </Link>
       <Popover content={content}>
         <UserStyled>
-          <img style={{ width: "50px", height: "50px" }} src={context.avatar} />
+          <img style={{ width: "50px", height: "50px" }} src={context.imageUrl} />
           <div>{context.username}</div>
         </UserStyled>
       </Popover>
