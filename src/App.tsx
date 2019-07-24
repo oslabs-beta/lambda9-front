@@ -125,12 +125,14 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    color: dodgerblue;
     margin: 0;
     font-family: helvetica, Arial, sans-serif;
   }
 
   h1, h2, h3, h4, h5, ul, li {
     margin: 0;
+    color: dodgerblue;
   }
 `;
 

@@ -26,7 +26,7 @@ const AppContainer: React.FunctionComponent<{}> = props => {
 };
 
 const AppContainerStyled = styled.div`
-  border: 2px red solid;
+  border: 2px white solid;
   display: flex;
   flex: 1;
 `;
@@ -34,7 +34,7 @@ const AppContainerStyled = styled.div`
 const LeftContainerStyled = styled.div`
   display: flex;
   flex-direction: column;
-  border: 6px solid #e056fd;
+  border: 3px solid #f7b731;
   padding: 1em;
   flex: 0.3;
   height: 100%;
@@ -43,14 +43,13 @@ const LeftContainerStyled = styled.div`
 
 const RightContainerStyled = styled.div`
   display: flex;
-  border: 3px gray solid;
   flex-direction: column;
   height: 100%;
   flex: 1;
 `;
 
 const OverviewStyled = styled.div`
-  border: 3px solid purple;
+  border: 3px solid #f7b731;
   padding: 1em;
   height: 100%;
   flex: 4;
@@ -58,7 +57,7 @@ const OverviewStyled = styled.div`
 `;
 
 const DiscoverStyled = styled.div`
-  border: 3px solid yellow;
+  border: 3px solid #f7b731;
   padding: 1em;
   height: 100%;
   flex: 6;
