@@ -19,7 +19,7 @@ const content = (
 );
 
 const NavContainer: React.FunctionComponent<{}> = () => {
-  const context = useContext(MyContext).state.user;
+  const context = useContext(MyContext).state;
   return (
     <NavContainerStyled>
       <Link to='/'>
@@ -31,8 +31,8 @@ const NavContainer: React.FunctionComponent<{}> = () => {
       </Link>
       <Popover content={content}>
         <UserStyled>
-          <img style={{ width: "50px", height: "50px" }} src={context.imageUrl} />
-          <div>{context.username}</div>
+          <img style={{ width: "50px", height: "50px" }} src={context.avatar} />
+          <div>{context.user.username}</div>
         </UserStyled>
       </Popover>
     </NavContainerStyled>

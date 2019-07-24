@@ -1,24 +1,29 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
-import Avatar from './Avatar'
-
+import Avatar from "./Avatar";
 
 const Profile: React.FunctionComponent<{}> = () => {
- 
   return (
     <ProfileStyled>
-      <Avatar/>
-      <div>User Avatar</div>
-      <div>User ID</div>
-      <div>User Email</div>
-      <div>User PhoneNumber</div>
+      <Avatar />
+      <UserStyled>
+        <div>User ID</div>
+        <div>User Email</div>
+        <div>User PhoneNumber</div>
+      </UserStyled>
     </ProfileStyled>
   );
 };
 
 const ProfileStyled = styled.div`
+  padding: 1em;
+  display: flex;
   height: 100vh;
   border: 6px solid black;
 `;
+
+const UserStyled = styled.div`
+  padding: 1em;
+`
 
 export default Profile;

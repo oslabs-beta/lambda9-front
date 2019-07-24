@@ -1,5 +1,5 @@
 import React, { Component, useState, useContext } from "react";
-import { Upload, Icon, message } from "antd";
+import { Upload, Button, Icon, message } from "antd";
 import { MyContext } from "../../App";
 
 function getBase64(img:any, callback:any) {
@@ -22,8 +22,9 @@ function beforeUpload(file:any) {
 
 const Avatar: React.FunctionComponent<{}> = () => {
   const [ loading, setLoading ] = useState(false);
-  const [ imageUrl, setImageUrl] = useState('');
-  const context = useContext(MyContext).state;
+  // const [ avatar, setAvatar] = useState('');
+  const { dispatch } = useContext(MyContext)
+  const context = useContext(MyContext)
 
   const handleChange = (info:any) => {
     if (info.file.status === "uploading") {
@@ -34,7 +35,8 @@ const Avatar: React.FunctionComponent<{}> = () => {
       // Get this url from response in real world.
       getBase64(info.file.originFileObj, imageUrl =>
         (setLoading(false),
-        setImageUrl(imageUrl))
+        dispatch({type: 'UPLOAD', img: imageUrl})
+        )
       );
     }
   };
@@ -54,15 +56,18 @@ const Avatar: React.FunctionComponent<{}> = () => {
         action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
         beforeUpload={beforeUpload}
         onChange={handleChange}>
-        {imageUrl ? (
+        {context.state.avatar ? (
           <img
-            style={{ width: "128px", height: "128px" }}
-            src={imageUrl}
+            style={{ width: "15em", height: "15em" }}
+            src={context.state.avatar}
             alt='avatar'
           />
         ) : (
           uploadButton
         )}
+        <Button>
+          <Icon type='upload'/> Upload
+        </Button>
       </Upload>
     );
 }
