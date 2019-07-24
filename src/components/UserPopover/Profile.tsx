@@ -13,21 +13,21 @@ const Profile: React.FunctionComponent<{}> = () => {
         <UserInfoStyled>
           <h2>
             {" "}
-            <Icon type='user' /> ID: {context.user.username}
+            <Icon type='user' />: {context.user.username}
           </h2>
         </UserInfoStyled>
 
         <UserInfoStyled>
           <h2>
             {" "}
-            <Icon type='mail' /> Email: {context.user.email}
+            <Icon type='mail' />: {context.user.email}
           </h2>
         </UserInfoStyled>
 
         <UserInfoStyled>
           <h2>
             {" "}
-            <Icon type='phone' /> PhoneNumber: {context.user.phone}
+            <Icon type='phone' />: {context.user.phone}
           </h2>
         </UserInfoStyled>
       </UserStyled>
@@ -39,7 +39,6 @@ const ProfileStyled = styled.div`
   padding: 1em;
   display: flex;
   height: 100vh;
-  border: 6px solid black;
 `;
 
 const UserStyled = styled.div`

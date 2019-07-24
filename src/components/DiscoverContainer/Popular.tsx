@@ -16,14 +16,14 @@ const Popular: React.FunctionComponent<{}> = () => {
         .slice(0, 5)
         .map((func: any) => (
           <NameStyled>
-            <div>⚛︎ {func.name}</div>
+            <div>{func.name}</div>
             <div>
-              ⚡️Invoked:{" "}
+              Invoked:{" "}
               <Badge
                 count={func.numInvocations}
                 showZero
                 overflowCount={999}
-                style={{ backgroundColor: "dodgerblue" }}
+                style={{ backgroundColor: "black" }}
               />
             </div>
           </NameStyled>
@@ -33,13 +33,12 @@ const Popular: React.FunctionComponent<{}> = () => {
 };
 
 const PopularStyled = styled.div`
-  border: 1px dodgerblue solid;
+  border: 1px black solid;
   height: 100%;
   padding: 10px;
   margin-right: 1em;
   flex: 1;
   border-radius: 8px;
-  background-color: #48dbfb;
   overflow: scroll;
 `;
 

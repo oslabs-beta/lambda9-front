@@ -7,7 +7,6 @@ const Setting: React.FunctionComponent<{}> = () => {
 
 const SettingStyled = styled.div`
   height: 100vh;
-  border: 6px solid black;
 `;
 
 export default Setting;

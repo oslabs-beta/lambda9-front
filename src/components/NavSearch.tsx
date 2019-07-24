@@ -9,8 +9,7 @@ const NavSearch: React.FunctionComponent = () => {
       <Search
         placeholder='Find your function'
         onSearch={value => console.log(value)}
-        enterButton
-        style={{paddingTop:'0.3em', width:'30vw'}}
+        style={{ paddingTop: "0.3em", width: "30vw", transition:"none" }}
       />
     </div>
   );

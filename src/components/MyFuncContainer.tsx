@@ -3,7 +3,7 @@ import { MyContext } from "../App";
 import { RouteComponentProps } from "react-router-dom";
 import LogContainer from "./LogContainer";
 import styled from "styled-components";
-import { Statistic, Icon } from "antd";
+import { Statistic } from "antd";
 
 type TParams = { func: string };
 
@@ -14,15 +14,10 @@ function MyFuncContainer({ match }: RouteComponentProps<TParams>) {
 
   return (
     <StyledContainer>
-      <Info style={{ fontSize: "20px", color: "black", fontStyle: "bold" }}>
-        ⚛︎ {filtered.name}
-      </Info>
       <Row>
-        
-        <Info style={{ fontSize: "18px", color: "black" }}>
-          🗂 {filtered.projectName}
-        </Info>
+          {filtered.name} From Project: {filtered.projectName}
       </Row>
+
       <div style={{ fontSize: "16px", color: "black", fontWeight: "bold" }}>
         Overview
       </div>
@@ -49,6 +44,7 @@ const Info = styled.div`
 
 const Row = styled.div`
   display: flex;
+  font-size: 20px;
 `;
 const InvocationContainer = styled.div`
   display: flex;

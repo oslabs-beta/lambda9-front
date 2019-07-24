@@ -16,36 +16,33 @@ const MyFunction: React.FunctionComponent<{}> = () => {
     })
     .map((func: Func) => (
       <MyFunctionStyled>
-        <Link to={`/functions/${func.name}`}>
-          <img
-            style={{
-              width: "2em",
-              height: "2em",
-              borderRadius: "20px",
-              marginRight: "0.5em"
-            }}
-            src={context.avatar}
-          />
+        <Link to={`/functions/${func.name}`} style={{ color: "black" }}>
           {func.name}
         </Link>
         <div
           style={{
             marginLeft: "1em"
           }}>
-          <Badge style={{ color: "dodgerblue", marginRight:"1em" }}
+          <Badge
+            style={{ color: "black", marginRight: "1em" }}
             count={<Icon type='clock-circle' />}
           />
-          {format(new Date(func.lastModified), "MM/DD/YYYY hh:mm aa")}
+          {format(new Date(func.lastModified), "MM/DD/YYYY hh:mm A")}
         </div>
       </MyFunctionStyled>
     ));
 
-  return <div>{mapped}</div>;
+  return <MyFunctionContainerStyled>{mapped}</MyFunctionContainerStyled>;
 };
+
+const MyFunctionContainerStyled = styled.div`
+margin-top: 0.5em;
+  overflow: scroll;
+  height: 100vh;
+`;
 
 const MyFunctionStyled = styled.div`
   padding: 10px;
-  overflow: scroll;
 `;
 
 export default MyFunction;

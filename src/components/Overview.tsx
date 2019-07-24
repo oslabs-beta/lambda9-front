@@ -3,7 +3,6 @@ import { MyContext } from "../App";
 import { Func } from "../@types/types";
 import styled from "styled-components";
 import { format } from "date-fns";
-import { Icon } from "antd";
 
 const Overview: React.FunctionComponent<{}> = () => {
   const context = useContext(MyContext).state.functions;
@@ -16,8 +15,8 @@ const Overview: React.FunctionComponent<{}> = () => {
     .slice(0, 1)
     .map((func: any) => (
       <div>
-        <Icon type='hourglass' style={{color:"dodgerblue"}}/> Last Updated:{" "}
-        {format(new Date(func.lastModified), "MM/DD/YYYY hh:mm aa")}
+        Last Updated:{" "}
+        {format(new Date(func.lastModified), "MM/DD/YYYY hh:mm A")}
       </div>
     ));
 
@@ -30,24 +29,20 @@ const Overview: React.FunctionComponent<{}> = () => {
     <OverviewStyled>
       <h1>Overview</h1>
       <div>
-        <Icon type='cloud' style={{ color: "dodgerblue" }} /> Total Functions:
+        Total Functions:
         {context.length}
       </div>
-      <div>
-        <Icon type='folder-open' style={{ color: "dodgerblue" }} /> Total
-        Projects: {project.length}
-      </div>
+      <div>Total Projects: {project.length}</div>
       <div>{update}</div>
       <div>
-        <Icon type='thunderbolt' style={{ color: "dodgerblue" }} /> Total
-        Invocations:
+        Total Invocations:
         {context.reduce((total: number, func: Func) => {
           total += func.numInvocations;
           return total;
         }, 0)}
       </div>
       <div>
-        <Icon type='bug' style={{ color: "dodgerblue" }} /> Total Errors:
+        Total Errors:
         {context.reduce((total: number, func: Func) => {
           total += func.numErrors;
           return total;

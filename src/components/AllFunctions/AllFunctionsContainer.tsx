@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import { Table, Button } from "antd";
 import { ColumnProps } from "antd/lib/table";
 import { User } from "../../@types/types";
+import NavSearch from "../NavSearch";
 
 const columns: ColumnProps<User>[] = [
   {
@@ -107,7 +108,7 @@ const AllFunctionsContainer: React.FunctionComponent<{}> = () => {
           (stat.name = func.name),
           (stat.detail = (
             <Link to={`/functions/${func.name}`}>
-              <Button type='primary'>Detail</Button>
+              <Button type='primary' style={{ backgroundColor: "black", border: "1px solid white" }}>Detail</Button>
             </Link>
           )),
           (stat.numInvocations = func.numInvocations),
@@ -121,13 +122,13 @@ const AllFunctionsContainer: React.FunctionComponent<{}> = () => {
           console.log(data)
         )
       )}
+      {/* <NavSearch/> */}
       <Table columns={columns} dataSource={data} />
     </AllFunctionsContainerStyled>
   );
 };
 
 const AllFunctionsContainerStyled = styled.div`
-  border: 10px solid green;
   padding: 1em;
   height: 100vh;
   overflow: scroll;
