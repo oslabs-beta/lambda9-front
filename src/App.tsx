@@ -30,7 +30,6 @@ const avatarReducer = (state, action) => {
 
 const MyProvider: React.FunctionComponent<{}> = props => {
   const [user, setUser] = useState({});
-  // const [avatars, setAvatars] = useState('')
   const [functions, setFunctions] = useState([]);
   const [img, dispatch] = useReducer(avatarReducer, "./src/logos/download.jpeg");
 
@@ -46,6 +45,7 @@ const MyProvider: React.FunctionComponent<{}> = props => {
           graphqlOperation(GetUser, { id: user.attributes.sub })
         ).then(response => {
           const data = response.data.getUser;
+          console.log('❎data', response)
           return data;
         });
 
@@ -54,10 +54,12 @@ const MyProvider: React.FunctionComponent<{}> = props => {
           // console.log('data', data);
           setFunctions(data);
           setUser({
-            username: userData.username
+            username: userData.username,
+            email: userData.email,
+            phone: userData.phone
           });
           dispatch({type: 'UPLOAD', img: userData.profileImageUrl})
-          console.log("useravatar", state.avatar);
+          console.log("this is userData", state.user);
         });
       } catch (e) {
         console.error(e);
@@ -123,12 +125,14 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    color: dodgerblue;
     margin: 0;
     font-family: helvetica, Arial, sans-serif;
   }
 
   h1, h2, h3, h4, h5, ul, li {
     margin: 0;
+    color: dodgerblue;
   }
 `;
 

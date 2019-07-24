@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { MyContext } from "../../App";
 import styled from "styled-components";
 import { distanceInWordsToNow } from "date-fns";
+import { Badge, Icon } from "antd";
 
 const Recent: React.FunctionComponent<{}> = () => {
   const context = useContext(MyContext).state.functions;
@@ -19,7 +20,14 @@ const Recent: React.FunctionComponent<{}> = () => {
         .map((func: any) => (
           <NameStyled>
             <div>⚛︎ {func.name}</div>
-            <div>⏱ {distanceInWordsToNow(new Date(func.lastModified))} ago</div>
+            <div>
+              <Badge
+                count={
+                  <Icon type='clock-circle' style={{ color: "dodgerblue", marginRight:"1em" }} />
+                }
+              />{" "}
+              {distanceInWordsToNow(new Date(func.lastModified))} ago
+            </div>
           </NameStyled>
         ))}
     </RecentStyled>
@@ -31,8 +39,8 @@ const RecentStyled = styled.div`
   height: 100%;
   padding: 10px;
   flex: 1;
-  border-radius: 10px;
-  background-color: lightgray;
+  border-radius: 8px;
+  background-color: #48dbfb;
   overflow: scroll;
 `;
 

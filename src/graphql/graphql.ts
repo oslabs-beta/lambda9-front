@@ -5,6 +5,8 @@ export const GetUser = `
       getUser(id: $id) {
         username
         profileImageUrl
+        email
+        phone
       }
     }
 `
