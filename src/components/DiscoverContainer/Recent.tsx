@@ -19,11 +19,11 @@ const Recent: React.FunctionComponent<{}> = () => {
         .slice(0, 5)
         .map((func: any) => (
           <NameStyled>
-            <div>⚛︎ {func.name}</div>
+            <div>{func.name}</div>
             <div>
               <Badge
                 count={
-                  <Icon type='clock-circle' style={{ color: "dodgerblue", marginRight:"1em" }} />
+                  <Icon type='clock-circle' style={{ color: "black", marginRight:"1em" }} />
                 }
               />{" "}
               {distanceInWordsToNow(new Date(func.lastModified))} ago
@@ -35,12 +35,11 @@ const Recent: React.FunctionComponent<{}> = () => {
 };
 
 const RecentStyled = styled.div`
-  border: 1px dodgerblue solid;
+  border: 1px black solid;
   height: 100%;
   padding: 10px;
   flex: 1;
   border-radius: 8px;
-  background-color: #48dbfb;
   overflow: scroll;
 `;
 

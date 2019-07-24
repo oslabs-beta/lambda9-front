@@ -1,4 +1,4 @@
-import React, { Component, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Upload, Button, Icon, message } from "antd";
 import { MyContext } from "../../App";
 

@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { Auth } from 'aws-amplify';
-import { Button } from 'antd';
+import * as React from "react";
+import { Auth } from "aws-amplify";
+import { Button } from "antd";
 
 const SignOutButton: React.FunctionComponent = ({ children }) => {
   const signOut = () => {
@@ -9,7 +9,11 @@ const SignOutButton: React.FunctionComponent = ({ children }) => {
       .catch(err => console.log(err));
   };
   return (
-    <Button type="primary" size="large" onClick={signOut}>
+    <Button
+      type='primary'
+      size='large'
+      onClick={signOut}
+      style={{ backgroundColor: "black", border: "1px solid black" }}>
       Sign Out
       {children}
     </Button>

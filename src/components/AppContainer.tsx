@@ -3,6 +3,7 @@ import DiscoverContainer from "./DiscoverContainer";
 import MyFunctions from "./MyFunctions";
 import Overview from "./Overview";
 import styled from "styled-components";
+import { colors } from "../utils/index";
 
 const AppContainer: React.FunctionComponent<{}> = props => {
   return (
@@ -26,19 +27,17 @@ const AppContainer: React.FunctionComponent<{}> = props => {
 };
 
 const AppContainerStyled = styled.div`
-  border: 2px white solid;
   display: flex;
   flex: 1;
+  margin: 0em 1em;
 `;
 
 const LeftContainerStyled = styled.div`
   display: flex;
   flex-direction: column;
-  border: 3px solid #f7b731;
   padding: 1em;
   flex: 0.3;
   height: 100%;
-  overflow: scroll;
 `;
 
 const RightContainerStyled = styled.div`
@@ -49,7 +48,6 @@ const RightContainerStyled = styled.div`
 `;
 
 const OverviewStyled = styled.div`
-  border: 3px solid #f7b731;
   padding: 1em;
   height: 100%;
   flex: 4;
@@ -57,7 +55,6 @@ const OverviewStyled = styled.div`
 `;
 
 const DiscoverStyled = styled.div`
-  border: 3px solid #f7b731;
   padding: 1em;
   height: 100%;
   flex: 6;
