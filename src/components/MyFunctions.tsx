@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { format } from "date-fns";
 
 const MyFunction: React.FunctionComponent<{}> = () => {
+  const context = useContext(MyContext).state
   const mapped = useContext(MyContext)
     .state.functions.sort((a, b) => {
       return (
@@ -14,7 +15,7 @@ const MyFunction: React.FunctionComponent<{}> = () => {
     })
     .map((func: Func) => (
       <MyFunctionStyled>
-        <Link to={`/functions/${func.name}`}>{func.name}</Link>
+        <Link to={`/functions/${func.name}`}><img style={{width:"2em", height:"2em", borderRadius:"20px",  marginRight: "0.5em"}} src={context.avatar}/>{func.name}</Link>
         <div>
           ⏱ {format(new Date(func.lastModified), "MM/DD/YYYY hh:mm aa")}
         </div>
