@@ -10,8 +10,8 @@ const Profile: React.FunctionComponent<{}> = () => {
       <Avatar />
       <UserStyled>
         <div>User ID: {context.user.username}</div>
-        <div>User Email</div>
-        <div>User PhoneNumber</div>
+        <div>User Email: {context.user.email}</div>
+        <div>User PhoneNumber: {context.user.phone}</div>
       </UserStyled>
     </ProfileStyled>
   );

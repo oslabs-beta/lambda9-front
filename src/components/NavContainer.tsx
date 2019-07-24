@@ -23,7 +23,7 @@ const NavContainer: React.FunctionComponent<{}> = () => {
   return (
     <NavContainerStyled>
       <Link to='/'>
-        <div className='logo'>🐑 Lambda9</div>
+        <div className='logo'>⾵ AIRFN</div>
       </Link>
       <NavSearch/>
       <Link to='/functions'>

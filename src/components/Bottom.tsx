@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Bottom: React.FunctionComponent<{}> = () => {
   return (
     <BottomStyled>
-        <div>Lambda 9, 2019<div>Terms of Service Privacy Policy</div></div>
+        <div>AIRFN, 2019<div>Terms of Service Privacy Policy</div></div>
     </BottomStyled>
   );
 };
