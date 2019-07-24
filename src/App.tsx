@@ -1,28 +1,30 @@
-import React, { useState, useReducer, useEffect } from "react";
-import { createGlobalStyle } from "styled-components";
-import { withAuthenticator } from "aws-amplify-react";
-import "antd/dist/antd.css";
-import { API, graphqlOperation, Auth } from "aws-amplify";
+import React, { useState, useReducer, useEffect } from 'react';
+import { createGlobalStyle } from 'styled-components';
+import { withAuthenticator } from 'aws-amplify-react';
+import 'antd/dist/antd.css';
+import { API, graphqlOperation, Auth } from 'aws-amplify';
 import {
   GetUser,
   ListFunctions,
   SubscribeToNewFunctions
-} from "./graphql/graphql";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import AppContainer from "./components/AppContainer";
-import AllFunctionsContainer from "./components/AllFunctions/AllFunctionsContainer";
-import MyFuncContainer from "./components/MyFuncContainer";
-import Bottom from "./components/Bottom";
-import NavContainer from "./components/NavContainer";
-import Profile from "./components/UserPopover/Profile";
-import Setting from "./components/UserPopover/Setting";
-import styled from "styled-components";
+} from './graphql/graphql';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import AppContainer from './components/AppContainer';
+import AllFunctionsContainer from './components/AllFunctions/AllFunctionsContainer';
+import MyFuncContainer from './components/MyFuncContainer';
+import Bottom from './components/Bottom';
+import NavContainer from './components/NavContainer';
+import Profile from './components/UserPopover/Profile';
+import Setting from './components/UserPopover/Setting';
+import styled from 'styled-components';
+
+import { Line } from 'react-chartjs-2';
 
 export const MyContext = React.createContext<any | null>(null);
 
 const avatarReducer = (state, action) => {
   switch (action.type) {
-    case "UPLOAD":
+    case 'UPLOAD':
       // console.log('this is payload', action.avatar)
       return action.img;
   }
@@ -31,7 +33,10 @@ const avatarReducer = (state, action) => {
 const MyProvider: React.FunctionComponent<{}> = props => {
   const [user, setUser] = useState({});
   const [functions, setFunctions] = useState([]);
-  const [img, dispatch] = useReducer(avatarReducer, "./src/logos/download.jpeg");
+  const [img, dispatch] = useReducer(
+    avatarReducer,
+    './src/logos/download.jpeg'
+  );
 
   // didMount
   useEffect(() => {
@@ -45,7 +50,7 @@ const MyProvider: React.FunctionComponent<{}> = props => {
           graphqlOperation(GetUser, { id: user.attributes.sub })
         ).then(response => {
           const data = response.data.getUser;
-          console.log('❎data', response)
+          console.log('❎data', response);
           return data;
         });
 
@@ -58,8 +63,8 @@ const MyProvider: React.FunctionComponent<{}> = props => {
             email: userData.email,
             phone: userData.phone
           });
-          dispatch({type: 'UPLOAD', img: userData.profileImageUrl})
-          console.log("this is userData", state.user);
+          dispatch({ type: 'UPLOAD', img: userData.profileImageUrl });
+          console.log('this is userData', state.user);
         });
       } catch (e) {
         console.error(e);
@@ -72,9 +77,9 @@ const MyProvider: React.FunctionComponent<{}> = props => {
   useEffect(() => {
     API.graphql(graphqlOperation(SubscribeToNewFunctions)).subscribe({
       next: response => {
-        console.log("response: ", response);
+        console.log('response: ', response);
         const func = response.value.data.onCreateFunction;
-        console.log("func: ", func);
+        console.log('func: ', func);
         setFunctions([...functions, func]);
       }
     });
@@ -103,11 +108,11 @@ const App: React.FunctionComponent<{}> = (props: any) => {
         <AppStyled>
           <NavContainer />
           <Switch>
-            <Route path='/' exact component={AppContainer} />
-            <Route path='/functions' exact component={AllFunctionsContainer} />
-            <Route path='/functions/:func' component={MyFuncContainer} />
-            <Route path='/profile' exact component={Profile} />
-            <Route path='/setting' exact component={Setting} />
+            <Route path="/" exact component={AppContainer} />
+            <Route path="/functions" exact component={AllFunctionsContainer} />
+            <Route path="/functions/:func" component={MyFuncContainer} />
+            <Route path="/profile" exact component={Profile} />
+            <Route path="/setting" exact component={Setting} />
           </Switch>
           <Bottom />
         </AppStyled>

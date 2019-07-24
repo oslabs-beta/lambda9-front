@@ -1,9 +1,11 @@
-import React from "react";
-import DiscoverContainer from "./DiscoverContainer";
-import MyFunctions from "./MyFunctions";
-import Overview from "./Overview";
-import styled from "styled-components";
-import { colors } from "../utils/index";
+import React from 'react';
+import DiscoverContainer from './DiscoverContainer';
+import MyFunctions from './MyFunctions';
+import Overview from './Overview';
+import styled from 'styled-components';
+import { colors } from '../utils/index';
+
+import { Line } from 'react-chartjs-2';
 
 const AppContainer: React.FunctionComponent<{}> = props => {
   return (
