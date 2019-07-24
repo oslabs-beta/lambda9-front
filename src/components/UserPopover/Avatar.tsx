@@ -22,7 +22,6 @@ function beforeUpload(file:any) {
 
 const Avatar: React.FunctionComponent<{}> = () => {
   const [ loading, setLoading ] = useState(false);
-  // const [ avatar, setAvatar] = useState('');
   const { dispatch } = useContext(MyContext)
   const context = useContext(MyContext)
 
@@ -46,7 +45,7 @@ const Avatar: React.FunctionComponent<{}> = () => {
         <div className='ant-upload-text'>Upload</div>
       </div>
     );
-    // const { imageUrl } = this.state;
+
     return (
       <Upload
         name='avatar'

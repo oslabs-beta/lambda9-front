@@ -1,13 +1,15 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import Avatar from "./Avatar";
+import { MyContext } from "../../App";
 
 const Profile: React.FunctionComponent<{}> = () => {
+  const context = useContext(MyContext).state;
   return (
     <ProfileStyled>
       <Avatar />
       <UserStyled>
-        <div>User ID</div>
+        <div>User ID: {context.user.username}</div>
         <div>User Email</div>
         <div>User PhoneNumber</div>
       </UserStyled>
