@@ -3,8 +3,8 @@ import { MyContext } from '../App';
 import { Func } from '../@types/types';
 import styled from 'styled-components';
 import { format } from 'date-fns';
-
 import { Line } from 'react-chartjs-2';
+import { colors } from '../utils/index';
 
 const Overview: React.FunctionComponent<{}> = () => {
   const context = useContext(MyContext).state.functions;
@@ -28,7 +28,13 @@ const Overview: React.FunctionComponent<{}> = () => {
   }, []);
 
   const mockdata = {
-    labels: ['2019-07-24', '2019-07-16', '2019-07-15'],
+    labels: [
+      '2019-07-24',
+      '2019-07-16',
+      '2019-07-15',
+      '2019-07-11',
+      '2019-07-10',
+    ],
     datasets: [
       {
         label: 'dataset',
@@ -47,47 +53,50 @@ const Overview: React.FunctionComponent<{}> = () => {
         pointHoverBackgroundColor: 'rgba(75,192,192,1)',
         pointHoverBorderColor: 'rgba(220,220,220,1)',
         pointHoverBorderWidth: 2,
-        pointRadius: 1,
+        pointRadius: 3,
         pointHitRadius: 10,
-        data: [23, 13, 7]
-      }
-    ]
+        data: [23, 13, 7, 10, 5],
+      },
+    ],
   };
 
   const options = {
     legend: {
-      display: false
+      display: false,
     },
     title: {
       display: true,
-      text: ''
-    }
+      text: '',
+    },
   };
 
   return (
     <OverviewStyled>
       <OverviewDataStyled>
-        <h1>Overview</h1>
-        <div>
-          Total Functions:
-          {context.length}
-        </div>
-        <div>Total Projects: {project.length}</div>
-        <div>{update}</div>
-        <div>
-          Total Invocations:
-          {context.reduce((total: number, func: Func) => {
-            total += func.numInvocations;
-            return total;
-          }, 0)}
-        </div>
-        <div>
-          Total Errors:
-          {context.reduce((total: number, func: Func) => {
-            total += func.numErrors;
-            return total;
-          }, 0)}
-        </div>
+        <HeaderStyled>Overview</HeaderStyled>
+        <div>{/* Total Functions: {context.length} */}</div>
+        {/* <div>Total Projects: {project.length}</div> */}
+        {/* <div>{update}</div> */}
+        <BoxStyled>
+          <div>
+            <h3>Total Invocations</h3>
+            <InvocationStyle>
+              {context.reduce((total: number, func: Func) => {
+                total += func.numInvocations;
+                return total;
+              }, 0)}
+            </InvocationStyle>
+          </div>
+          <div>
+            <h3>Total Invocations</h3>
+            <ErrorStyle>
+              {context.reduce((total: number, func: Func) => {
+                total += func.numErrors;
+                return total;
+              }, 0)}
+            </ErrorStyle>
+          </div>
+        </BoxStyled>
       </OverviewDataStyled>
       <GraphStyled>
         <Line data={mockdata} options={options} />
@@ -102,8 +111,35 @@ const OverviewStyled = styled.div`
   justify-content: align-content;
 `;
 const OverviewDataStyled = styled.div`
-  flex: 1;
+  margin-right: 2rem;
 `;
 
-const GraphStyled = styled.div``;
+const GraphStyled = styled.div`
+  height: auto;
+  width: 50%;
+  // max-width: 60%;
+  align-self: center;
+  justify-self: center;
+`;
+
+const InvocationStyle = styled.div`
+  font-size: 3rem;
+  font-weight: 700;
+`;
+const ErrorStyle = styled.div`
+  font-size: 3rem;
+  font-weight: 700;
+`;
+const BoxStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  h3 {
+    color: ${colors.grey};
+  }
+`;
+const HeaderStyled = styled.h1`
+  font-weight: 700;
+  margin-bottom: 2rem;
+`;
+
 export default Overview;

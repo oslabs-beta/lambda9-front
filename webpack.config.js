@@ -6,23 +6,23 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: 'src/index.html'
-    })
+      template: 'src/index.html',
+    }),
   ],
   output: {
     path: __dirname + '/dist',
-    filename: 'build/[name].[contenthash].js'
+    filename: 'build/[name].[contenthash].js',
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: ['.ts', '.tsx', '.js'],
   },
   module: {
     rules: [
       { test: /\.tsx?$/, loader: 'ts-loader' },
       {
         test: /\.css$/,
-        loaders: ['style-loader', 'css-loader']
-      }
-    ]
-  }
+        loaders: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
 };
