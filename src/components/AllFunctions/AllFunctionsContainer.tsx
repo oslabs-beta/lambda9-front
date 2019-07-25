@@ -1,18 +1,18 @@
-import React, { useContext } from "react";
-import { MyContext } from "../../App";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { format } from "date-fns";
-import { Table, Button } from "antd";
-import { ColumnProps } from "antd/lib/table";
-import { User } from "../../@types/types";
-import NavSearch from "../NavSearch";
+import React, { useContext } from 'react';
+import { MyContext } from '../../App';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { format } from 'date-fns';
+import { Table, Button } from 'antd';
+import { ColumnProps } from 'antd/lib/table';
+import { User } from '../../@types/types';
+import NavSearch from '../NavSearch';
 
 const columns: ColumnProps<User>[] = [
   {
-    key: "1",
-    title: "Index",
-    dataIndex: "index",
+    key: '1',
+    title: 'Index',
+    dataIndex: 'index',
     // specify the condition of filtering result
     // here is that finding the name started with `value`
     sorter: (a, b) => {
@@ -24,12 +24,12 @@ const columns: ColumnProps<User>[] = [
       }
       return 0;
     },
-    sortDirections: ["descend", "ascend"]
+    sortDirections: ['descend', 'ascend'],
   },
   {
-    key: "2",
-    title: "Name",
-    dataIndex: "name",
+    key: '2',
+    title: 'Name',
+    dataIndex: 'name',
     // specify the condition of filtering result
     // here is that finding the name started with `value`
     sorter: (a, b) => {
@@ -41,31 +41,31 @@ const columns: ColumnProps<User>[] = [
       }
       return 0;
     },
-    sortDirections: ['descend', 'ascend']
+    sortDirections: ['descend', 'ascend'],
   },
   {
-    key: "3",
-    title: "",
-    dataIndex: "detail"
+    key: '3',
+    title: '',
+    dataIndex: 'detail',
   },
   {
-    key: "4",
-    title: "Invocations",
-    dataIndex: "numInvocations", // This column should be consistent with other variable;
+    key: '4',
+    title: 'Invocations',
+    dataIndex: 'numInvocations', // This column should be consistent with other variable;
     sorter: (a, b) => a.numInvocations - b.numInvocations,
-    sortDirections: ['descend', 'ascend']
+    sortDirections: ['descend', 'ascend'],
   },
   {
-    key: "5",
-    title: "Errors",
-    dataIndex: "numErrors", // This column should be consistent with other variable;
+    key: '5',
+    title: 'Errors',
+    dataIndex: 'numErrors', // This column should be consistent with other variable;
     sorter: (a, b) => a.numErrors - b.numErrors,
-    sortDirections: ["descend", "ascend"]
+    sortDirections: ['descend', 'ascend'],
   },
   {
-    key: "6",
-    title: "Project",
-    dataIndex: "projectName",
+    key: '6',
+    title: 'Project',
+    dataIndex: 'projectName',
     sorter: (a, b) => {
       if (a.projectName.toLowerCase() < b.projectName.toLowerCase()) {
         return -1;
@@ -75,12 +75,12 @@ const columns: ColumnProps<User>[] = [
       }
       return 0;
     },
-    sortDirections: ['descend', 'ascend']
+    sortDirections: ['descend', 'ascend'],
   },
   {
-    key: "7",
-    title: "Last Modified",
-    dataIndex: "lastModified",
+    key: '7',
+    title: 'Last Modified',
+    dataIndex: 'lastModified',
     sorter: (a, b) => {
       if (a.lastModified < b.lastModified) {
         return -1;
@@ -90,8 +90,8 @@ const columns: ColumnProps<User>[] = [
       }
       return 0;
     },
-    sortDirections: ['descend', 'ascend']
-  }
+    sortDirections: ['descend', 'ascend'],
+  },
 ];
 
 const AllFunctionsContainer: React.FunctionComponent<{}> = () => {
@@ -105,18 +105,13 @@ const AllFunctionsContainer: React.FunctionComponent<{}> = () => {
         func => (
           (stat = new Object()),
           (stat.index = index++),
-          (stat.name = func.name),
-          (stat.detail = (
-            <Link to={`/functions/${func.name}`}>
-              <Button type='primary' style={{ backgroundColor: "black", border: "1px solid white" }}>Detail</Button>
-            </Link>
-          )),
+          (stat.name = <Link to={`/functions/${func.name}`}>{func.name}</Link>),
           (stat.numInvocations = func.numInvocations),
           (stat.numErrors = func.numErrors),
           (stat.projectName = func.projectName),
           (stat.lastModified = format(
             new Date(func.lastModified),
-            "MM/DD/YYYY hh:mm aa"
+            'MM/DD/YYYY hh:mm aa'
           )),
           data.push(stat),
           console.log(data)
