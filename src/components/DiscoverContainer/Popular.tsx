@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { MyContext } from "../../App";
 import styled from "styled-components";
+import { Badge } from "antd";
 
 const Popular: React.FunctionComponent<{}> = () => {
   const context = useContext(MyContext).state.functions;
@@ -15,8 +16,16 @@ const Popular: React.FunctionComponent<{}> = () => {
         .slice(0, 5)
         .map((func: any) => (
           <NameStyled>
-            <div>⚛︎ {func.name}</div>
-            <div>⚡️Invoked: {func.numInvocations} times</div>
+            <div>{func.name}</div>
+            <div>
+              Invoked:{" "}
+              <Badge
+                count={func.numInvocations}
+                showZero
+                overflowCount={999}
+                style={{ backgroundColor: "black" }}
+              />
+            </div>
           </NameStyled>
         ))}
     </PopularStyled>
@@ -24,13 +33,12 @@ const Popular: React.FunctionComponent<{}> = () => {
 };
 
 const PopularStyled = styled.div`
-  border: 1px dodgerblue solid;
+  border: 1px black solid;
   height: 100%;
   padding: 10px;
   margin-right: 1em;
   flex: 1;
-  border-radius: 10px;
-  background-color: lightgray;
+  border-radius: 8px;
   overflow: scroll;
 `;
 

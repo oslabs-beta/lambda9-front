@@ -4,8 +4,10 @@ import { Func } from "../@types/types";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { format } from "date-fns";
+import { Badge, Icon } from "antd";
 
 const MyFunction: React.FunctionComponent<{}> = () => {
+  const context = useContext(MyContext).state;
   const mapped = useContext(MyContext)
     .state.functions.sort((a, b) => {
       return (
@@ -14,19 +16,33 @@ const MyFunction: React.FunctionComponent<{}> = () => {
     })
     .map((func: Func) => (
       <MyFunctionStyled>
-        <Link to={`/functions/${func.name}`}>{func.name}</Link>
-        <div>
-          ⏱ {format(new Date(func.lastModified), "MM/DD/YYYY hh:mm aa")}
+        <Link to={`/functions/${func.name}`} style={{ color: "black" }}>
+          {func.name}
+        </Link>
+        <div
+          style={{
+            marginLeft: "1em"
+          }}>
+          <Badge
+            style={{ color: "black", marginRight: "1em" }}
+            count={<Icon type='clock-circle' />}
+          />
+          {format(new Date(func.lastModified), "MM/DD/YYYY hh:mm A")}
         </div>
       </MyFunctionStyled>
     ));
 
-  return <div>{mapped}</div>;
+  return <MyFunctionContainerStyled>{mapped}</MyFunctionContainerStyled>;
 };
+
+const MyFunctionContainerStyled = styled.div`
+margin-top: 0.5em;
+  overflow: scroll;
+  height: 100vh;
+`;
 
 const MyFunctionStyled = styled.div`
   padding: 10px;
-  overflow: scroll;
 `;
 
 export default MyFunction;

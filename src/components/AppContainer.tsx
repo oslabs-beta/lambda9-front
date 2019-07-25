@@ -1,8 +1,11 @@
-import React from "react";
-import DiscoverContainer from "./DiscoverContainer";
-import MyFunctions from "./MyFunctions";
-import Overview from "./Overview";
-import styled from "styled-components";
+import React from 'react';
+import DiscoverContainer from './DiscoverContainer';
+import MyFunctions from './MyFunctions';
+import Overview from './Overview';
+import styled from 'styled-components';
+import { colors } from '../utils/index';
+
+import { Line } from 'react-chartjs-2';
 
 const AppContainer: React.FunctionComponent<{}> = props => {
   return (
@@ -26,31 +29,27 @@ const AppContainer: React.FunctionComponent<{}> = props => {
 };
 
 const AppContainerStyled = styled.div`
-  border: 2px red solid;
   display: flex;
   flex: 1;
+  margin: 0em 1em;
 `;
 
 const LeftContainerStyled = styled.div`
   display: flex;
   flex-direction: column;
-  border: 6px solid #e056fd;
   padding: 1em;
   flex: 0.3;
   height: 100%;
-  overflow: scroll;
 `;
 
 const RightContainerStyled = styled.div`
   display: flex;
-  border: 3px gray solid;
   flex-direction: column;
   height: 100%;
   flex: 1;
 `;
 
 const OverviewStyled = styled.div`
-  border: 3px solid purple;
   padding: 1em;
   height: 100%;
   flex: 4;
@@ -58,7 +57,6 @@ const OverviewStyled = styled.div`
 `;
 
 const DiscoverStyled = styled.div`
-  border: 3px solid yellow;
   padding: 1em;
   height: 100%;
   flex: 6;
