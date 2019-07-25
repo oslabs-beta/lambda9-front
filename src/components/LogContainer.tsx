@@ -16,11 +16,11 @@ const LogContainer: React.FunctionComponent<any> = props => {
     );
   });
   return (
-    <Tabs defaultActiveKey='1'>
-      <TabPane tab='Function Definition' key='1'>
+    <Tabs defaultActiveKey="1">
+      <TabPane tab="Function Definition" key="1">
         <Stuff> {JSON.stringify(props.logs.definition)}</Stuff>
       </TabPane>
-      <TabPane tab='Logs' key='2'>
+      <TabPane tab="Logs" key="2">
         <Stuff>{logsList}</Stuff>
       </TabPane>
     </Tabs>
@@ -28,7 +28,7 @@ const LogContainer: React.FunctionComponent<any> = props => {
 };
 
 const Stuff = styled.div`
-  height: 30vh;
+  height: 50vh;
   background: #01172c;
   overflow: scroll;
   border-radius: 7px;
