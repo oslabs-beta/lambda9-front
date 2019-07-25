@@ -14,17 +14,8 @@ function MyFuncContainer({ match }: RouteComponentProps<TParams>) {
 
   return (
     <StyledContainer>
-      <Info style={{ fontSize: "20px", color: "black", fontStyle: "bold" }}>
-        ⚛︎ {filtered.name}
-      </Info>
-      <Row>
-        
-        <Info style={{ fontSize: "18px", color: "black" }}>
-          🗂 {filtered.projectName}
-        </Info>
-      </Row>
       <div style={{ fontSize: "16px", color: "black", fontWeight: "bold" }}>
-        Overview
+        Overview -  🗂 {filtered.projectName} - {filtered.name}
       </div>
       <InvocationContainer>
         <Invocation>
@@ -51,6 +42,7 @@ const Row = styled.div`
   display: flex;
 `;
 const InvocationContainer = styled.div`
+  height:
   display: flex;
   justify-content: space-between;
   color: black;
