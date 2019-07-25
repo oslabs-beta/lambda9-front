@@ -56,7 +56,6 @@ const MyProvider: React.FunctionComponent<{}> = props => {
 
         API.graphql(graphqlOperation(ListFunctions)).then(response => {
           const data = response.data.listFunctions.items;
-          // console.log('data', data);
           setFunctions(data);
           setUser({
             username: userData.username,

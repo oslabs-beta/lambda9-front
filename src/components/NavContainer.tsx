@@ -22,7 +22,7 @@ const NavContainer: React.FunctionComponent<{}> = () => {
   return (
     <NavContainerStyled>
       <Link to='/' style={{ color: "black", fontSize: "3rem" }}>
-        <div className='logo'>⾵ AIRFN</div>
+        <div className='logo'>⾵ Airfn</div>
       </Link>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <Link
@@ -55,9 +55,10 @@ const NavContainer: React.FunctionComponent<{}> = () => {
 const NavContainerStyled = styled.nav`
   font-size: 1.5rem;
   height: 10vh;
-  padding: 0.5em;
+  padding: 0.5em, 0.5em;
   color: black;
   background: white;
+  border-bottom: 2px solid black;
   display: flex;
   justify-content: space-between;
   margin: 0em 1em 1em;
