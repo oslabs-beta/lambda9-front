@@ -1,54 +1,39 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { MyContext } from '../App';
 import { RouteComponentProps } from 'react-router-dom';
 import LogContainer from './LogContainer';
 import styled from 'styled-components';
 import { Statistic } from 'antd';
-
-import { Line } from 'react-chartjs-2';
+import { GetGraphData } from '../graphql/graphql'
+import { API, graphqlOperation, Auth } from 'aws-amplify';
+import InvocationGraph from './MyFuncContainer/InvocationGraph'
 
 type TParams = { func: string };
 
 function MyFuncContainer({ match }: RouteComponentProps<TParams>) {
+  const [func, setFunction] = useState({})
   const filtered = useContext(MyContext).state.functions.filter(ele => {
     return ele.name === match.params.func;
   })[0];
 
-  const options = {
-    legend: {
-      display: false
-    },
-    title: {
-      display: true,
-      text: ''
-    }
-  };
-  const mockdata = {
-    labels: ['2019-07-24', '2019-07-16', '2019-07-15'],
-    datasets: [
-      {
-        // label: 'dataset',
-        fill: false,
-        lineTension: 0.1,
-        backgroundColor: 'rgba(75,192,192,0.4)',
-        borderColor: 'rgba(75,192,192,1)',
-        borderCapStyle: 'butt',
-        borderDash: [],
-        borderDashOffset: 0.0,
-        borderJoinStyle: 'miter',
-        pointBorderColor: 'rgba(75,192,192,1)',
-        pointBackgroundColor: '#fff',
-        pointBorderWidth: 1,
-        pointHoverRadius: 5,
-        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-        pointHoverBorderColor: 'rgba(220,220,220,1)',
-        pointHoverBorderWidth: 2,
-        pointRadius: 1,
-        pointHitRadius: 10,
-        data: [23, 13, 7]
+  useEffect(() => {
+    async function getData() {
+      try {
+        const graphData = await API.graphql(
+          graphqlOperation(GetGraphData, { id: filtered.id })
+        ).then(response => {
+          console.log(' i am in response')
+          console.log('response:', response);
+          console.log('response invocationData:', response.data.getFunction.invocationData);
+          setFunction(response.data.getFunction.invocationData)
+        });
       }
-    ]
-  };
+      catch (e) {
+        console.log("errrroorr:", e)
+      }
+    }
+    getData()
+  }, [])
 
   return (
     <StyledContainer>
@@ -69,7 +54,7 @@ function MyFuncContainer({ match }: RouteComponentProps<TParams>) {
         </Invocation>
         <Invocation>
           Invocation Over Time
-          <Line data={mockdata} options={options} />
+          <InvocationGraph graphData={func} />
         </Invocation>
         <Invocation>One More Graph</Invocation>
         <Invocation>Just Because</Invocation>

@@ -10,7 +10,19 @@ export const GetUser = `
       }
     }
 `
-
+export const GetGraphData = `
+query GetFunction(
+    $id: ID!
+  ) {
+  getFunction(id: $id) {
+    name
+    invocationData {
+      invocations
+      timestamps
+    }
+  }
+}
+`
 export const ListFunctions = `
   query ListFunctions {
       listFunctions {
