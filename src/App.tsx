@@ -18,8 +18,6 @@ import Profile from './components/UserPopover/Profile';
 import Setting from './components/UserPopover/Setting';
 import styled from 'styled-components';
 
-import { Line } from 'react-chartjs-2';
-
 export const MyContext = React.createContext<any | null>(null);
 
 const avatarReducer = (state, action) => {
