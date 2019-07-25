@@ -1,3 +1,6 @@
+awsmobilejs
+awsmobilejs/*
+node_modules
 # Logs
 logs
 *.log
@@ -86,6 +89,10 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+#awsappsyncjs
+aws-appsync-config.js
+aws-exports.js
 
 #awsmobilejs
 appsync-info.json

@@ -1,27 +1,53 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { MyContext } from '../../App';
-import { Func } from '../../@types/types';
+import styled from 'styled-components';
+import { Badge } from 'antd';
 
 const Popular: React.FunctionComponent<{}> = () => {
+  const context = useContext(MyContext).state.functions;
   return (
-    <MyContext.Consumer>
-      {context => (
-        <div>
-          <h1>Most Popular</h1>
-          {context.state.functions
-            .sort((a, b) => {
-              return b.invocation - a.invocation;
-            })
-            .map((func: Func) => (
-              <div>
-                <div>{func.functionName}</div>
-                <div>{func.invocation}</div>
-              </div>
-            ))}
-        </div>
-      )}
-    </MyContext.Consumer>
+    <PopularStyled>
+      <h2>Most Popular Functions</h2>
+      {context
+        .map((ele: any) => ele)
+        .sort((a, b) => {
+          return Number(b.numInvocations) - Number(a.numInvocations);
+        })
+        .slice(0, 5)
+        .map((func: any) => (
+          <NameStyled>
+            <div>{func.name}</div>
+            <div>
+              <Badge
+                count={func.numInvocations}
+                showZero
+                overflowCount={999}
+                style={{ backgroundColor: 'black' }}
+              />{' '}
+              Invocations
+            </div>
+          </NameStyled>
+        ))}
+    </PopularStyled>
   );
 };
+
+const PopularStyled = styled.div`
+  height: 100%;
+  margin-right: 1em;
+  flex: 1;
+  overflow: scroll;
+  h2 {
+    margin-bottom: 2rem;
+  }
+`;
+
+const NameStyled = styled.div`
+  width: 100%;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: space-between;
+`;
 
 export default Popular;

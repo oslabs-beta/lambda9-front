@@ -1,8 +1,9 @@
 export interface Func {
-  functionName: string;
-  lastModified: Date;
-  invocation: number;
-  error: number;
+  name: string;
+  lastModified: string;
+  numInvocations: number;
+  numErrors: number;
+  projectName: string;
 }
 
 export interface FuncState {
@@ -12,5 +13,16 @@ export interface FuncState {
 export interface AppContextInterface {
   state: any;
 }
+
+export interface User {
+  index: number;
+  name: string;
+  detail: string;
+  numInvocations: number;
+  numErrors: number;
+  projectName: string;
+  lastModified: string;
+}
+
 
 declare module "aws-exports";
