@@ -16,6 +16,7 @@ const DiscoverStyled = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-around;
+  align-items: center;
 `;
 
 export default DiscoverContainer;

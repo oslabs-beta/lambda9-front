@@ -50,13 +50,14 @@ const RightContainerStyled = styled.div`
 `;
 
 const OverviewStyled = styled.div`
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   padding: 1em;
   height: 100%;
   flex: 4;
   overflow: scroll;
 `;
 
-const DiscoverStyled = styled.div`
+const DiscoverStyled = styled.div`  
   padding: 1em;
   height: 100%;
   flex: 6;
