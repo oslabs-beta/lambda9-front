@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const Setting: React.FunctionComponent<{}> = () => {
-  return <SettingStyled>THis is setting</SettingStyled>;
+  return <SettingStyled>Settings</SettingStyled>;
 };
 
 const SettingStyled = styled.div`
