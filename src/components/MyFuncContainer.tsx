@@ -4,9 +4,10 @@ import { RouteComponentProps } from 'react-router-dom';
 import LogContainer from './LogContainer';
 import styled from 'styled-components';
 import { Statistic } from 'antd';
-import { GetGraphData } from '../graphql/graphql';
+import { GetGraphData, SubscribeToNewLogs } from '../graphql/graphql';
 import { API, graphqlOperation, Auth } from 'aws-amplify';
 import InvocationGraph from './MyFuncContainer/InvocationGraph';
+import { filter } from 'minimatch';
 
 type TParams = { func: string };
 
@@ -15,6 +16,8 @@ function MyFuncContainer({ match }: RouteComponentProps<TParams>) {
   const filtered = useContext(MyContext).state.functions.filter(ele => {
     return ele.name === match.params.func;
   })[0];
+
+  console.log('filtereID', filtered.id);
 
   useEffect(() => {
     async function getData() {
@@ -29,6 +32,19 @@ function MyFuncContainer({ match }: RouteComponentProps<TParams>) {
             response.data.getFunction.invocationData
           );
           setFunction(response.data.getFunction.invocationData);
+
+          try {
+            console.log('FILTERED_ID', filtered.id);
+            API.graphql(
+              graphqlOperation(SubscribeToNewLogs, { id: filtered.id })
+            ).subscribe({
+              next: response => {
+                console.log(response);
+              }
+            });
+          } catch (error) {
+            console.log('error subscribing', error);
+          }
         });
       } catch (e) {
         console.log('errrroorr:', e);
@@ -41,7 +57,7 @@ function MyFuncContainer({ match }: RouteComponentProps<TParams>) {
     <StyledContainer>
       <Row>
         <p>
-          <span className='function-name'>{filtered.name}</span> from project{' '}
+          <span className="function-name">{filtered.name}</span> from project{' '}
           <strong>{filtered.projectName}</strong>
         </p>
       </Row>

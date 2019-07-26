@@ -9,7 +9,7 @@ export const GetUser = `
         phone
       }
     }
-`
+`;
 export const GetGraphData = `
 query GetFunction(
     $id: ID!
@@ -22,7 +22,7 @@ query GetFunction(
     }
   }
 }
-`
+`;
 export const ListFunctions = `
   query ListFunctions {
       listFunctions {

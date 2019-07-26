@@ -1,4 +1,6 @@
 import React from 'react';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import styled from 'styled-components';
 import { Tabs } from 'antd';
 
@@ -18,16 +20,18 @@ const LogContainer: React.FunctionComponent<any> = props => {
   return (
     <Tabs defaultActiveKey="1">
       <TabPane tab="Function Definition" key="1">
-        <Stuff> {JSON.stringify(props.logs.definition)}</Stuff>
+        <StyledSyntax language="javascript" style={docco}>
+          {props.logs.definition}
+        </StyledSyntax>
       </TabPane>
       <TabPane tab="Logs" key="2">
-        <Stuff>{logsList}</Stuff>
+        <Container>{logsList}</Container>
       </TabPane>
     </Tabs>
   );
 };
 
-const Stuff = styled.div`
+const Container = styled.div`
   height: 50vh;
   background: #01172c;
   overflow: scroll;
@@ -35,6 +39,13 @@ const Stuff = styled.div`
   padding: 2rem;
   color: white;
   font-family: 'Roboto Mono', 'Courier', sans-serif;
+`;
+
+const StyledSyntax = styled(SyntaxHighlighter)`
+  height: 50vh;
+  overflow: scroll;
+  border-radius: 7px;
+  padding: 3rem;
 `;
 
 export default LogContainer;
