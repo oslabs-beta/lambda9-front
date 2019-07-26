@@ -12,37 +12,37 @@ const NavContainer: React.FunctionComponent<{}> = () => {
   const content = (
     <div>
       <p style={{ color: 'black', fontWeight: 700 }}>{context.user.username}</p>
-      <Link to='/profile' style={{ color: 'black' }}>
+      <Link to="/profile" style={{ color: 'black' }}>
         <p>Profile</p>
       </Link>
-      <Link to='/setting' style={{ color: 'black' }}>
+      {/* <Link to='/setting' style={{ color: 'black' }}>
         <p>Setting</p>
-      </Link>
+      </Link> */}
       <SignOutButton />
     </div>
   );
   return (
     <NavContainerStyled>
-      <Link to='/' style={{ color: 'black', fontSize: '3rem' }}>
-        <div className='logo'>
-          <span className='character'>⾵</span> Airfn
+      <Link to="/" style={{ color: 'black', fontSize: '3rem' }}>
+        <div className="logo">
+          <span className="character">⾵</span> Airfn
         </div>
       </Link>
       <div
         style={{
           display: 'flex',
           justifyContent: 'space-between',
-          alignItems: 'center',
+          alignItems: 'center'
         }}
       >
         <Link
           style={{
             color: 'black',
             fontSize: '1.2rem',
-            marginRight: '2rem',
+            marginRight: '2rem'
           }}
-          className='functions'
-          to='/functions'
+          className="functions"
+          to="/functions"
         >
           Functions
         </Link>
@@ -53,7 +53,7 @@ const NavContainer: React.FunctionComponent<{}> = () => {
                 width: '2em',
                 height: '2em',
                 marginRight: '10px',
-                borderRadius: '40px',
+                borderRadius: '40px'
               }}
               src={context.avatar}
             />

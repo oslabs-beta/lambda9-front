@@ -39,15 +39,16 @@ const Recent: React.FunctionComponent<{}> = () => {
 
 const RecentStyled = styled.div`
   height: 100%;
-  padding: 10px;
+  padding: 0.5em;
   flex: 1;
   border-radius: 8px;
   overflow: scroll;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 `;
 
 const NameStyled = styled.div`
   width: 100%;
-  padding: 0.5em;
+  margin-bottom: 0.5rem;
   display: flex;
   justify-content: space-between;
 `;

@@ -60,19 +60,19 @@ const OverviewStyled = styled.div`
   padding: 1em;
   height: 100%;
   flex: 5;
-  overflow: scroll;
   border-radius: 7px;
-  max-width: 1000px;
+  overflow: scroll;
+  // max-width: 1000px;
 `;
 
 const DiscoverStyled = styled.div`
-  margin: 1rem 0;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  padding: 1em;
+  // margin: 1rem 0;
+  // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  // padding: 1em;
+  height: 100%;
   flex: 5;
-  overflow: scroll;
   border-radius: 7px;
-  max-width: 1000px;
+  // max-width: 1000px;
 `;
 
 export default AppContainer;

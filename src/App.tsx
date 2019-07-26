@@ -7,18 +7,16 @@ import {
   GetUser,
   ListFunctions,
   SubscribeToNewFunctions
-} from "./graphql/graphql";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import AppContainer from "./components/AppContainer";
-import AllFunctionsContainer from "./components/AllFunctions/AllFunctionsContainer";
-import MyFuncContainer from "./components/MyFuncContainer";
-import Bottom from "./components/Bottom";
-import NavContainer from "./components/NavContainer";
-import Profile from "./components/UserPopover/Profile";
-import Setting from "./components/UserPopover/Setting";
-import styled from "styled-components";
-import { Storage } from "aws-amplify";
-import { Line } from "react-chartjs-2";
+} from './graphql/graphql';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import AppContainer from './components/AppContainer';
+import AllFunctionsContainer from './components/AllFunctions/AllFunctionsContainer';
+import MyFuncContainer from './components/MyFuncContainer';
+import Bottom from './components/Bottom';
+import NavContainer from './components/NavContainer';
+import Profile from './components/UserPopover/Profile';
+import Setting from './components/UserPopover/Setting';
+import styled from 'styled-components';
 
 export const MyContext = React.createContext<any | null>(null);
 
