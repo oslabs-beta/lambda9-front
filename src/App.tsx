@@ -1,8 +1,8 @@
-import React, { useState, useReducer, useEffect } from 'react';
-import { createGlobalStyle } from 'styled-components';
-import { withAuthenticator } from 'aws-amplify-react';
-import 'antd/dist/antd.css';
-import { API, graphqlOperation, Auth } from 'aws-amplify';
+import React, { useState, useReducer, useEffect } from "react";
+import { createGlobalStyle } from "styled-components";
+import { withAuthenticator } from "aws-amplify-react";
+import "antd/dist/antd.css";
+import { API, graphqlOperation, Auth } from "aws-amplify";
 import {
   GetUser,
   ListFunctions,
@@ -22,7 +22,7 @@ export const MyContext = React.createContext<any | null>(null);
 
 const avatarReducer = (state, action) => {
   switch (action.type) {
-    case 'UPLOAD':
+    case "UPLOAD":
       // console.log('this is payload', action.avatar)
       return action.img;
   }
@@ -31,6 +31,7 @@ const avatarReducer = (state, action) => {
 const MyProvider: React.FunctionComponent<{}> = props => {
   const [user, setUser] = useState({});
   const [functions, setFunctions] = useState([]);
+  // const [avatar, setAvatar] = useState([]);
   const [img, dispatch] = useReducer(
     avatarReducer,
     './src/logos/download.jpeg'
@@ -48,9 +49,16 @@ const MyProvider: React.FunctionComponent<{}> = props => {
           graphqlOperation(GetUser, { id: user.attributes.sub })
         ).then(response => {
           const data = response.data.getUser;
-          console.log('❎data', response);
+          // console.log('❎data', response);
           return data;
         });
+
+        // const files = await Storage.list("");
+        // const img = await Promise.all(
+        //   files.map(async file => await Storage.get(file.key))
+        // );
+        // console.log("✅this is img", img);
+        // setAvatar(img);
 
         API.graphql(graphqlOperation(ListFunctions)).then(response => {
           const data = response.data.listFunctions.items;
@@ -61,7 +69,7 @@ const MyProvider: React.FunctionComponent<{}> = props => {
             phone: userData.phone
           });
           dispatch({ type: 'UPLOAD', img: userData.profileImageUrl });
-          console.log('this is userData', state.user);
+          // console.log('this is userData', state.user);
         });
       } catch (e) {
         console.error(e);
@@ -74,9 +82,9 @@ const MyProvider: React.FunctionComponent<{}> = props => {
   useEffect(() => {
     API.graphql(graphqlOperation(SubscribeToNewFunctions)).subscribe({
       next: response => {
-        console.log('response: ', response);
+        // console.log('response: ', response);
         const func = response.value.data.onCreateFunction;
-        console.log('func: ', func);
+        // console.log('func: ', func);
         setFunctions([...functions, func]);
       }
     });
@@ -91,9 +99,7 @@ const MyProvider: React.FunctionComponent<{}> = props => {
   console.log(state);
 
   return (
-    <MyContext.Provider value={{ state, dispatch }}>
-      {props.children}
-    </MyContext.Provider>
+    <MyContext.Provider value={{ state, dispatch }}>{props.children}</MyContext.Provider>
   );
 };
 
@@ -105,11 +111,11 @@ const App: React.FunctionComponent<{}> = (props: any) => {
         <AppStyled>
           <NavContainer />
           <Switch>
-            <Route path="/" exact component={AppContainer} />
-            <Route path="/functions" exact component={AllFunctionsContainer} />
-            <Route path="/functions/:func" component={MyFuncContainer} />
-            <Route path="/profile" exact component={Profile} />
-            <Route path="/setting" exact component={Setting} />
+            <Route path='/' exact component={AppContainer} />
+            <Route path='/functions' exact component={AllFunctionsContainer} />
+            <Route path='/functions/:func' component={MyFuncContainer} />
+            <Route path='/profile' exact component={Profile} />
+            <Route path='/setting' exact component={Setting} />
           </Switch>
           <Bottom />
         </AppStyled>

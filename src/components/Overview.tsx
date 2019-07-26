@@ -116,8 +116,7 @@ const OverviewDataStyled = styled.div`
 
 const GraphStyled = styled.div`
   height: auto;
-  width: 100%;
-  max-width: 600px;
+  width: 50%;
   align-self: center;
   justify-self: center;
 `;
@@ -139,7 +138,7 @@ const BoxStyled = styled.div`
 `;
 const HeaderStyled = styled.h1`
   font-weight: 700;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
 `;
 
 export default Overview;
