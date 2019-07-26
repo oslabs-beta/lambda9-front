@@ -74,9 +74,6 @@ const Overview: React.FunctionComponent<{}> = () => {
     <OverviewStyled>
       <OverviewDataStyled>
         <HeaderStyled>Overview</HeaderStyled>
-        <div>{/* Total Functions: {context.length} */}</div>
-        {/* <div>Total Projects: {project.length}</div> */}
-        {/* <div>{update}</div> */}
         <BoxStyled>
           <div>
             <h3>Total Invocations</h3>
@@ -109,6 +106,7 @@ const OverviewStyled = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: align-content;
+  height: 100%;
 `;
 const OverviewDataStyled = styled.div`
   margin-right: 2rem;

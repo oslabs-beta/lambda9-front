@@ -33,7 +33,7 @@ const Popular: React.FunctionComponent<{}> = () => {
 };
 
 const PopularStyled = styled.div`
-  height: 100%;
+  height: 33vh;
   margin-right: 1em;
   flex: 1;
   padding: 0.5em;

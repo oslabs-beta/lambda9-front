@@ -24,7 +24,7 @@ const Recent: React.FunctionComponent<{}> = () => {
               <Badge
                 count={
                   <Icon
-                    type='clock-circle'
+                    type="clock-circle"
                     style={{ color: 'black', marginRight: '1em' }}
                   />
                 }
@@ -38,7 +38,7 @@ const Recent: React.FunctionComponent<{}> = () => {
 };
 
 const RecentStyled = styled.div`
-  height: 100%;
+  height: 33vh;
   padding: 0.5em;
   flex: 1;
   border-radius: 8px;
