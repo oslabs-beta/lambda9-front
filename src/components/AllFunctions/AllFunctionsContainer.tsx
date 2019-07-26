@@ -24,7 +24,7 @@ const columns: ColumnProps<User>[] = [
       }
       return 0;
     },
-    sortDirections: ['descend', 'ascend'],
+    sortDirections: ['descend', 'ascend']
   },
   {
     key: '2',
@@ -41,26 +41,26 @@ const columns: ColumnProps<User>[] = [
       }
       return 0;
     },
-    sortDirections: ['descend', 'ascend'],
+    sortDirections: ['descend', 'ascend']
   },
   {
     key: '3',
     title: '',
-    dataIndex: 'detail',
+    dataIndex: 'detail'
   },
   {
     key: '4',
     title: 'Invocations',
     dataIndex: 'numInvocations', // This column should be consistent with other variable;
     sorter: (a, b) => a.numInvocations - b.numInvocations,
-    sortDirections: ['descend', 'ascend'],
+    sortDirections: ['descend', 'ascend']
   },
   {
     key: '5',
     title: 'Errors',
     dataIndex: 'numErrors', // This column should be consistent with other variable;
     sorter: (a, b) => a.numErrors - b.numErrors,
-    sortDirections: ['descend', 'ascend'],
+    sortDirections: ['descend', 'ascend']
   },
   {
     key: '6',
@@ -75,7 +75,7 @@ const columns: ColumnProps<User>[] = [
       }
       return 0;
     },
-    sortDirections: ['descend', 'ascend'],
+    sortDirections: ['descend', 'ascend']
   },
   {
     key: '7',
@@ -90,8 +90,8 @@ const columns: ColumnProps<User>[] = [
       }
       return 0;
     },
-    sortDirections: ['descend', 'ascend'],
-  },
+    sortDirections: ['descend', 'ascend']
+  }
 ];
 
 const AllFunctionsContainer: React.FunctionComponent<{}> = () => {
@@ -105,7 +105,15 @@ const AllFunctionsContainer: React.FunctionComponent<{}> = () => {
         func => (
           (stat = new Object()),
           (stat.index = index++),
-          (stat.name = <Link to={`/functions/${func.name}`}>{func.name}</Link>),
+          // (stat.name = <Link to={`/functions/${func.name}`}>{func.name}</Link>),
+          (stat.name = func.name),
+          (stat.detail = (
+            <Link to={`/functions/${func.name}`}>
+              <Button type="default" size="small">
+                Detail
+              </Button>
+            </Link>
+          )),
           (stat.numInvocations = func.numInvocations),
           (stat.numErrors = func.numErrors),
           (stat.projectName = func.projectName),
