@@ -7,16 +7,16 @@ import {
   GetUser,
   ListFunctions,
   SubscribeToNewFunctions
-} from './graphql/graphql';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import AppContainer from './components/AppContainer';
-import AllFunctionsContainer from './components/AllFunctions/AllFunctionsContainer';
-import MyFuncContainer from './components/MyFuncContainer';
-import Bottom from './components/Bottom';
-import NavContainer from './components/NavContainer';
-import Profile from './components/UserPopover/Profile';
-import Setting from './components/UserPopover/Setting';
-import styled from 'styled-components';
+} from "./graphql/graphql";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import AppContainer from "./components/AppContainer";
+import AllFunctionsContainer from "./components/AllFunctions/AllFunctionsContainer";
+import MyFuncContainer from "./components/MyFuncContainer";
+import Bottom from "./components/Bottom";
+import NavContainer from "./components/NavContainer";
+import Profile from "./components/UserPopover/Profile";
+import Setting from "./components/UserPopover/Setting";
+import styled from "styled-components";
 
 export const MyContext = React.createContext<any | null>(null);
 
@@ -34,7 +34,7 @@ const MyProvider: React.FunctionComponent<{}> = props => {
   // const [avatar, setAvatar] = useState([]);
   const [img, dispatch] = useReducer(
     avatarReducer,
-    './src/logos/download.jpeg'
+    "./src/logos/download.jpeg"
   );
 
   // didMount
@@ -68,7 +68,7 @@ const MyProvider: React.FunctionComponent<{}> = props => {
             email: userData.email,
             phone: userData.phone
           });
-          dispatch({ type: 'UPLOAD', img: userData.profileImageUrl });
+          dispatch({ type: "UPLOAD", img: userData.profileImageUrl });
           // console.log('this is userData', state.user);
         });
       } catch (e) {
@@ -99,7 +99,9 @@ const MyProvider: React.FunctionComponent<{}> = props => {
   console.log(state);
 
   return (
-    <MyContext.Provider value={{ state, dispatch }}>{props.children}</MyContext.Provider>
+    <MyContext.Provider value={{ state, dispatch }}>
+      {props.children}
+    </MyContext.Provider>
   );
 };
 
