@@ -19,7 +19,7 @@ const BottomStyled = styled.div`
   color: white;
   background-color: ${colors.secondary};
   text-align: center;
-  padding: 1rem;
+  padding: 0.5rem;
   p {
     font-size: 1.2rem;
     margin-bottom: 0;

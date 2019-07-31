@@ -38,11 +38,14 @@ const LeftContainerStyled = styled.div`
   h2 {
     font-weight: 700;
   }
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 7px;
   display: flex;
   flex-direction: column;
   padding: 1em;
   flex: 0.2;
-  height: 100%;
+  height: 97%;
+  margin-right: 1em;
 `;
 
 const RightContainerStyled = styled.div`
@@ -57,19 +60,19 @@ const OverviewStyled = styled.div`
   padding: 1em;
   height: 100%;
   flex: 5;
-  overflow: scroll;
   border-radius: 7px;
-  max-width: 1000px;
+  overflow: scroll;
+  // max-width: 1000px;
 `;
 
 const DiscoverStyled = styled.div`
-  margin: 1rem 0;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  padding: 1em;
+  // margin: 1rem 0;
+  // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  // padding: 1em;
+  height: 100%;
   flex: 5;
-  overflow: scroll;
   border-radius: 7px;
-  max-width: 1000px;
+  // max-width: 1000px;
 `;
 
 export default AppContainer;

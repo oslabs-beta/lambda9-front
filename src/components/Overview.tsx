@@ -33,7 +33,7 @@ const Overview: React.FunctionComponent<{}> = () => {
       '2019-07-16',
       '2019-07-15',
       '2019-07-11',
-      '2019-07-10',
+      '2019-07-10'
     ],
     datasets: [
       {
@@ -55,19 +55,19 @@ const Overview: React.FunctionComponent<{}> = () => {
         pointHoverBorderWidth: 2,
         pointRadius: 3,
         pointHitRadius: 10,
-        data: [23, 13, 7, 10, 5],
-      },
-    ],
+        data: [23, 13, 7, 10, 5]
+      }
+    ]
   };
 
   const options = {
     legend: {
-      display: false,
+      display: false
     },
     title: {
       display: true,
-      text: '',
-    },
+      text: ''
+    }
   };
 
   return (
@@ -88,7 +88,7 @@ const Overview: React.FunctionComponent<{}> = () => {
             </InvocationStyle>
           </div>
           <div>
-            <h3>Total Invocations</h3>
+            <h3>Total Errors</h3>
             <ErrorStyle>
               {context.reduce((total: number, func: Func) => {
                 total += func.numErrors;
@@ -116,8 +116,7 @@ const OverviewDataStyled = styled.div`
 
 const GraphStyled = styled.div`
   height: auto;
-  width: 100%;
-  max-width: 600px;
+  width: 50%;
   align-self: center;
   justify-self: center;
 `;
@@ -139,7 +138,7 @@ const BoxStyled = styled.div`
 `;
 const HeaderStyled = styled.h1`
   font-weight: 700;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
 `;
 
 export default Overview;

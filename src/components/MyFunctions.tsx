@@ -43,10 +43,12 @@ const MyFunctionContainerStyled = styled.div`
   margin-top: 0.5em;
   overflow: scroll;
   height: 100vh;
+  
 `;
 
 const MyFunctionStyled = styled.div`
   margin: 10px;
+  
 `;
 
 export default MyFunction;

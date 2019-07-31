@@ -36,16 +36,15 @@ const PopularStyled = styled.div`
   height: 100%;
   margin-right: 1em;
   flex: 1;
+  padding: 0.5em;
   overflow: scroll;
-  h2 {
-    margin-bottom: 2rem;
-  }
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 `;
 
 const NameStyled = styled.div`
   width: 100%;
   margin-bottom: 0.5rem;
-  font-size: 1.1rem;
   display: flex;
   justify-content: space-between;
 `;

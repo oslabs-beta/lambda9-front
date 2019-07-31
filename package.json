@@ -25,6 +25,7 @@
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
+    "react-syntax-highlighter": "^11.0.2",
     "redux": "^4.0.2",
     "styled-components": "^4.3.2"
   },

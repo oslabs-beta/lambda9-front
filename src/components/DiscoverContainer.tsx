@@ -6,7 +6,7 @@ import styled from 'styled-components';
 const DiscoverContainer: React.FunctionComponent<{}> = props => {
   return (
     <Container>
-      <HeaderStyled>Discover</HeaderStyled>
+      {/* <HeaderStyled>Discover</HeaderStyled> */}
       <DiscoverStyled>
         <Popular />
         <Recent />
@@ -19,7 +19,8 @@ const Container = styled.div``;
 
 const DiscoverStyled = styled.div`
   display: flex;
-  width: 100%;
+  margin-top: 1em;
+  height: 100%;
   justify-content: space-around;
   align-items: center;
 `;

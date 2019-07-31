@@ -32,16 +32,16 @@ const columns: ColumnProps<User>[] = [
     dataIndex: 'name',
     // specify the condition of filtering result
     // here is that finding the name started with `value`
-    sorter: (a, b) => {
-      if (a.name.toLowerCase() < b.name.toLowerCase()) {
-        return -1;
-      }
-      if (a.name.toLowerCase() > b.name.toLowerCase()) {
-        return 1;
-      }
-      return 0;
-    },
-    sortDirections: ['descend', 'ascend'],
+    // sorter: (a, b) => {
+    //   if (a.name.toLowerCase() < b.name.toLowerCase()) {
+    //     return -1;
+    //   }
+    //   if (a.name.toLowerCase() > b.name.toLowerCase()) {
+    //     return 1;
+    //   }
+    //   return 0;
+    // },
+    // sortDirections: ['descend', 'ascend'],
   },
   {
     key: '3',
@@ -75,7 +75,7 @@ const columns: ColumnProps<User>[] = [
       }
       return 0;
     },
-    sortDirections: ['descend', 'ascend'],
+    sortDirections: ['ascend', 'descend'],
   },
   {
     key: '7',
