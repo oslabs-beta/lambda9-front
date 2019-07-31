@@ -133,6 +133,7 @@ const BoxStyled = styled.div`
   h3 {
     color: ${colors.grey};
   }
+  padding-left: 12em;
 `;
 const HeaderStyled = styled.h1`
   font-weight: 700;
